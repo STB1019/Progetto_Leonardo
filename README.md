@@ -22,7 +22,7 @@
 
 ![Screen Shot](images/screenshot.png)
 
-...
+Project with the aim of building a robot that is able to move and climb stairs.
 
 ## Built With
 
