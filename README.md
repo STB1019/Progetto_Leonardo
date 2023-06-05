@@ -37,5 +37,5 @@ See the [open issues](https://github.com/TTT357C/Progetto_Leonardo/issues) for a
 
 * **Thomas Causetti** - *Engineering Student and Member of IEEE* - [Thomas Causetti](https://github.com/TTT357C/) - *Programmer and Designer*
 * **Mirko Rossi** - *Engineering Student and Member of IEEE* - [Mirko Rossi](https://github.com/Zphyr19) - *Programmer*
-* **Abdel** - *Engineering Student and Member of IEEE* - [Abdel]() - *Programmer*
+* **Abdel** - *Engineering Student and Member of IEEE* - [Abdel](https://github.com/99Abdel) - *Programmer*
 * **Stefano Molari** - *Engineering Student and Member of IEEE* - [Stefano Molari](https://github.com/steMola) - *Circuit Designer*
