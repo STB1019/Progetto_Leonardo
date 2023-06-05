@@ -31,6 +31,7 @@ Raspberry and Arduino
 ## Roadmap
 
 See the [open issues](https://github.com/TTT357C/Progetto_Leonardo/issues) for a list of proposed features (and known issues).
+See also our trello [Trello](https://trello.com/b/dbFiTYEp/progetto-leonardo-ieee-student-branch-brescia)
 
 
 ## Authors
