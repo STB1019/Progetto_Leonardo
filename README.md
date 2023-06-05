@@ -3,7 +3,7 @@
   <h1 align="center">Progetto Leonardo</h1>
 
   <p align="center">
-    An Awesome ReadME Generator To Jumpstart Your Projects!
+    An Ieee Student Branch Project
     <br/>
     <br/>
   </p>
@@ -20,7 +20,7 @@
 
 ## About The Project
 
-![Screen Shot](images/screenshot.png)
+<img src="Leonardo.jpg" height="400">
 
 Project with the aim of building a robot that is able to move and climb stairs.
 
@@ -35,7 +35,7 @@ See the [open issues](https://github.com/TTT357C/Progetto_Leonardo/issues) for a
 
 ## Authors
 
-* **Thomas Causetti** - *Engineering Student and Member of IEEE* - [Thomas Causetti](https://github.com/TTT357C/) - *Programmer*
-* **Mirko Rossi** - *Engineering Student and Member of IEEE* - [Mirko Rossi]() - **
-* **Abdel** - *Engineering Student and Member of IEEE* - [Abdel]() - **
-* **Stefano Molari** - *Engineering Student and Member of IEEE* - [Stefano Molari]() - **
+* **Thomas Causetti** - *Engineering Student and Member of IEEE* - [Thomas Causetti](https://github.com/TTT357C/) - *Programmer and Designer*
+* **Mirko Rossi** - *Engineering Student and Member of IEEE* - [Mirko Rossi]() - *Programmer*
+* **Abdel** - *Engineering Student and Member of IEEE* - [Abdel]() - *Programmer*
+* **Stefano Molari** - *Engineering Student and Member of IEEE* - [Stefano Molari]() - *Circuit Designer*
