@@ -37,13 +37,17 @@ void communicationSerial(){
         char nr = Serial.read();
         switch(nr){
             case '1':{
-                //forward_mode();
-                digitalWrite(13,HIGH);
+                forward_mode();
+                //digitalWrite(13,HIGH);
+                delay(100);
+                turn_off_bridges();
             }break;
             
             case '2':{
-                //backward_mode();
-                digitalWrite(13,LOW);
+                backward_mode();
+                //digitalWrite(13,LOW);
+                delay(100);
+                turn_off_bridges();
             }break;
 
             case '3':{
