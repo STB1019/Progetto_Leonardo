@@ -76,8 +76,8 @@ void setup() {
 void loop() {
 
   pwm_function(0.5);
-  //dummyMovement();
-  communicationSerial();
+  dummyMovement();
+  //communicationSerial();
 
 }
 

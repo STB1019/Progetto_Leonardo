@@ -38,15 +38,15 @@ void communicationSerial(){
         switch(nr){
             case '1':{
                 forward_mode();
-                //digitalWrite(13,HIGH);
-                delay(100);
+                digitalWrite(13,HIGH);
+                delay(1000);
                 turn_off_bridges();
             }break;
             
             case '2':{
                 backward_mode();
-                //digitalWrite(13,LOW);
-                delay(100);
+                digitalWrite(13,LOW);
+                delay(1000);
                 turn_off_bridges();
             }break;
 
