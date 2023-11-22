@@ -2,7 +2,7 @@
 #include "Set_Orientation.h"
 //Stepper Thomas
 #include "Stepper_Define.h"
-#include "Stepper_Function.h"
+//#include "Stepper_Function.h"
 
 #include "Endrun_Functions.h"
 #include "Manual_Mode.h"
@@ -76,8 +76,8 @@ void setup() {
 void loop() {
 
   pwm_function(0.5);
-  dummyMovement();
-  //communicationSerial();
+  //dummyMovement();
+  communicationSerial();
 
 }
 

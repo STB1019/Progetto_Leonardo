@@ -32,29 +32,29 @@ class App:
 
         #TODO: add speed selector
 
-        GButton_690=tk.Button(root)
-        GButton_690["activebackground"] = "#1872c6"
-        GButton_690["bg"] = "#1f93ff"
-        GButton_690["cursor"] = "trek"
+        GButton_UP=tk.Button(root)
+        GButton_UP["activebackground"] = "#1872c6"
+        GButton_UP["bg"] = "#1f93ff"
+        GButton_UP["cursor"] = "trek"
         ft = tkFont.Font(family=dfont,size=38)
-        GButton_690["font"] = ft
-        GButton_690["fg"] = "#ffffff"
-        GButton_690["justify"] = "center"
-        GButton_690["text"] = "⇪"
-        GButton_690.place(x=240,y=100,width=100,height=100)
-        GButton_690["command"] = self.GButton_690_command
+        GButton_UP["font"] = ft
+        GButton_UP["fg"] = "#ffffff"
+        GButton_UP["justify"] = "center"
+        GButton_UP["text"] = "⇪"
+        GButton_UP.place(x=240,y=100,width=100,height=100)
+        GButton_UP["command"] = self.GButton_UP_command
 
-        GButton_803=tk.Button(root)
-        GButton_803["activebackground"] = "#1872c6"
-        GButton_803["bg"] = "#1f93ff"
-        GButton_803["cursor"] = "spraycan"
+        GButton_DOWN=tk.Button(root)
+        GButton_DOWN["activebackground"] = "#1872c6"
+        GButton_DOWN["bg"] = "#1f93ff"
+        GButton_DOWN["cursor"] = "spraycan"
         ft = tkFont.Font(family=dfont,size=38)
-        GButton_803["font"] = ft
-        GButton_803["fg"] = "#ffffff"
-        GButton_803["justify"] = "center"
-        GButton_803["text"] = "⇩"
-        GButton_803.place(x=240,y=210,width=100,height=100)
-        GButton_803["command"] = self.GButton_803_command
+        GButton_DOWN["font"] = ft
+        GButton_DOWN["fg"] = "#ffffff"
+        GButton_DOWN["justify"] = "center"
+        GButton_DOWN["text"] = "⇩"
+        GButton_DOWN.place(x=240,y=210,width=100,height=100)
+        GButton_DOWN["command"] = self.GButton_DOWN_command
 
         GButton_234=tk.Button(root)
         GButton_234["activebackground"] = "#1872c6"
@@ -226,61 +226,61 @@ class App:
         GLabel_225["text"] = "Linear 4"
         GLabel_225.place(x=230,y=510,width=120,height=30)
 
-    def GButton_690_command(self):
-        s.write(1)
+    def GButton_UP_command(self):
+        s.write('1'.encode("ascii"))
 
 
-    def GButton_803_command(self):
-        s.write(2)
+    def GButton_DOWN_command(self):
+        s.write('2'.encode("ascii"))
 
 
     def GButton_234_command(self):
-        s.write(3)
+        s.write('3'.encode("ascii"))
 
 
     def GButton_727_command(self):
-        s.write(4)
+        s.write('4'.encode("ascii"))
 
 
     def GButton_320_command(self):
-        s.write(0)
+        s.write('0'.encode("ascii"))
         s.close()
 
 
     def GButton_69_command(self):
-        s.write(6)
+        s.write('6'.encode("ascii"))
 
 
     def GButton_293_command(self):
-        s.write(7)
+        s.write('7'.encode("ascii"))
 
 
     def GButton_949_command(self):
-        s.write(8)
+        s.write('8'.encode("ascii"))
 
 
     def GButton_754_command(self):
-        s.write(9)
+        s.write('9'.encode("ascii"))
 
 
     def GButton_572_command(self):
-        s.write(10)
+        s.write('10'.encode("ascii"))
 
 
     def GButton_490_command(self):
-        s.write(11)
+        s.write('11'.encode("ascii"))
 
 
     def GButton_567_command(self):
-        s.write(12)
+        s.write('12'.encode("ascii"))
 
 
     def GButton_415_command(self):
-        s.write(13)
+        s.write('13'.encode("ascii"))
 
 
     def GButton_350_command(self):
-        s.write(14)
+        s.write('14'.encode("ascii"))
 
 
 

@@ -37,22 +37,24 @@ void communicationSerial(){
         char nr = Serial.read();
         switch(nr){
             case '1':{
-                forward_mode();
+                //forward_mode();
+                digitalWrite(13,HIGH);
             }break;
             
             case '2':{
-                backward_mode();
+                //backward_mode();
+                digitalWrite(13,LOW);
             }break;
 
             case '3':{
-                turn_left_mode();
+                //turn_left_mode();
             }break;
 
             case '4':{
-                turn_right_mode();
+                //turn_right_mode();
             }break;
 
-            case '5':{
+            /*case '5':{
                 current_pos_f = moveMotor(clock_rot, DIR_PIN_F, STEP_PIN_F, microDelay, stepsPerRevolution, current_pos_f);
             }break;
 
@@ -82,7 +84,7 @@ void communicationSerial(){
 
             case 'c':{
                 current_pos_cg = moveMotor(counter_rot, DIR_PIN_CG, STEP_PIN_CG, microDelay, stepsPerRevolution, current_pos_cg);
-            }break;
+            }break;*/
         
             default:
             Serial.println("ERROR: value unexpected");
