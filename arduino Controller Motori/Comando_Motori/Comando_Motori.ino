@@ -1,8 +1,10 @@
-#include "PIN_OUT.h"
-#include "Set_Orientation.h"
+//#include "PIN_OUT.h"
+//#include "Set_Orientation.h"
 //Stepper Thomas
 #include "Stepper_Define.h"
 //#include "Stepper_Function.h"
+#include "PIN_OUT2.h"
+#include "Set_orientation2.h"
 
 #include "Endrun_Functions.h"
 #include "Manual_Mode.h"
@@ -21,10 +23,10 @@
 void setup() {
 
   Serial.begin(9600); // BEGINNING COMUNICATION RATE: 9600 bit/s
-  
+  /*
   /*
    * ALL OF THIS PINS ARE DIGITAL
-   */
+   
   // FOR SERIAL COMUNICATION
    pinMode(TX,INPUT);
    pinMode(RX,OUTPUT);
@@ -52,6 +54,10 @@ void setup() {
    pinMode(ACLKW_B_L,OUTPUT);
   
   //pin step motors
+
+  
+
+
   
   pinMode(STEP_PIN_F, OUTPUT);
   pinMode(DIR_PIN_F, OUTPUT);
@@ -66,9 +72,16 @@ void setup() {
   pinMode(DIR_PIN_CG, OUTPUT);
   
   
-   /*
+   
    * ALL OF THIS PINS ARE ANALOG
    */
+  
+  pinMode(pwm, OUTPUT);
+  pinMode(dir1, OUTPUT);
+  pinMode(dir2, OUTPUT);
+  pinMode(dir3, OUTPUT);
+  pinMode(dir4, OUTPUT);
+  
    
 }
 
