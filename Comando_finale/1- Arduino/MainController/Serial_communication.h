@@ -1,12 +1,14 @@
-
-int microDelay = 1000;
+#include <Softwareserial.h>
  
 void communicationSerial(){
-    if (Serial.available()) {
-        char nr = Serial.read();
-        switch(nr){
-            
-            
-        };
-    }
+    
+    serial_movement.begin(1000);
+    serial_sonar.begin(2000)
+
+
+    wait(1);
+
+    serial_movement.close();
+    serial_sonar.close();
+
 }
