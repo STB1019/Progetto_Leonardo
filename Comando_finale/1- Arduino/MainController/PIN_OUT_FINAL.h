@@ -3,7 +3,7 @@
 #define dir3 7
 #define dir4 8
 
-#define pwm 9
+#define PWM_PIN 9
 
 #define dir_step1 10
 #define dir_step2 12
