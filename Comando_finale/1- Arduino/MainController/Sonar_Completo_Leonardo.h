@@ -26,6 +26,7 @@
 #define POSIZIONE_CENTRALE 90             //Lettreralmente la posizione centrale del servo motore (in gardi)
 #define DELAY_SONAR 100                   //Tempo di attesa tra una scansione e l'altra (in millisecondi)
 #define ITERAZIONI 5                      //Numero scansioni per passo del servo
+#define PASSO 5                           //Step del servo motore coperti ad ogni movimento
 
 /*VARIABILI GLOBALI*/
 
@@ -33,7 +34,9 @@ Servo MyServo;                                              //Nome del servo mot
 NewPing scansione(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE);     //Settaggio funzione di controllo del sensore HC-SR04
 int posizione, direzione, fine_corsa_dx, fine_corsa_sx;     //Variabili per il controllo del servo motore
 long tempo;                                                 //Variabile per il temporizzatore
-float distanza;                                             //Variabile che indica il valore letto dal HC-SR04 (in centimetri)
+int distanza;                                               //Variabile che indica il valore letto dal HC-SR04 (in centimetri)
+int distanze[13];                                           //Array con tutte le distanze rilevate nel range attuale
+int zona;                                                   //Valore che indica la zona di osservazione 0 = dx; 1 = ce; 2 = sx
 
 /*PROTOTIPI*/
 //Dichiarazione iniziale delle funzioni che si andranno ad utilizzare
@@ -42,6 +45,7 @@ void Diritto();               //Setto estremi di base e posizione centrale
 void Svolta_Destra();         //Setto estremi di svolta a destra e posizione al limite destro
 void Svolta_Sinistra();       //Setto estremi di svolta a sinistra e posizione al limite sinistro
 void Sonar();                 //Scansione con movimento del servo
+void pulisciArray();          //Reset dell'array in attesa dei nuovi dati
 
 void setup() {
   //Associazione del servo motore al pin dedicato di Arduino
@@ -51,9 +55,9 @@ void setup() {
   Serial.begin(9600);
   
   //Inizializzo dati di partenza del servo motore
-  Diritto();                   //Setto i valori base degli estremi di lavoro
-  MyServo.write(posizione);    //Posiziono il servo in una posizione centrale
-  direzione = SINISTRA;        //Setto la direzione iniziale del movimento del sonar
+  Diritto(); //Setto i valori base degli estremi di lavoro
+  MyServo.write(posizione);//Posiziono il servo in una posizione centrale
+  direzione = SINISTRA; //Setto la direzione iniziale del movimento del sonar
 
   //Inizializzo variabile temporale
   tempo = millis();
@@ -71,18 +75,24 @@ void Diritto(){
   fine_corsa_dx = FINE_CORSA_DX_BASE;
   fine_corsa_sx = FINE_CORSA_SX_BASE;
   posizione = POSIZIONE_CENTRALE;
+  zona = 1;
+  pulisciArray();
 }
 
 void Svolta_Destra(){
   fine_corsa_dx = FINE_CORSA_DX_SVOLTA;
   fine_corsa_sx = fine_corsa_dx + RANGE_SONAR;
   posizione = fine_corsa_dx;
+  zona = 0;
+  pulisciArray();
 }
 
 void Svolta_Sinistra(){
   fine_corsa_sx = FINE_CORSA_SX_SVOLTA;
   fine_corsa_dx = fine_corsa_sx - RANGE_SONAR;
   posizione = fine_corsa_sx;
+  zona = 2;
+  pulisciArray();
 }
 
 void Sonar(){
@@ -90,23 +100,29 @@ void Sonar(){
   MyServo.write(posizione);
 
   //Echo rilevamento della distanza n volte e conversione in centimetri
-  distanza = scansione.convert_cm(scansione.ping_median(ITERAZIONI));
+  distanza = round(scansione.convert_cm(scansione.ping_median(ITERAZIONI)));
 
   //Scrittura dati sul monitor seriale
-  Serial.print("posizione: ");
-  Serial.print(posizione);
-  Serial.print(" distanza: ");
-  Serial.print(distanza);
-  Serial.println(" cm");
+  Serial.write(posizione);                            //Invio della posizione
+  Serial.write('\n');                                 //Separatore dati modificabile
+  Serial.write(distanza);                             //Invio della distanza
   
-  /*<-- eventuale salvataggio dati su un array*/
+  //salvataggio dati su un array
+  int i = (posizione - RANGE_SONAR*zona) / PASSO;     //Calcolo indice di salvataggio
+  distanze[i] = distanza;                             //Salvataggio su array
 
   //Decido se scorrere a destra o a sinistra in base alla posizione attuale del servo
   if(posizione == fine_corsa_dx) direzione = SINISTRA;
   else if(posizione == fine_corsa_sx) direzione = DESTRA;
 
   //Effettuo un passo nel verso deciso
-  if(direzione == SINISTRA) posizione++;
-  else if(direzione == DESTRA) posizione--;
+  if(direzione == SINISTRA) posizione += PASSO;
+  else if(direzione == DESTRA) posizione -= PASSO;
   else Serial.println("Errore");
+}
+
+void pulisciArray(){
+  for(int i = 0; i < sizeof(distanze); i++){
+    distanze[i] = 0;
+  }
 }
