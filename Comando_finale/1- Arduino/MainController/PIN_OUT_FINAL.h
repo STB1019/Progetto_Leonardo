@@ -1,7 +1,7 @@
-#define dir1 5
-#define dir2 6
-#define dir3 7
-#define dir4 8
+#define dir_dc1 5
+#define dir_dc2 6
+#define dir_dc3 7
+#define dir_dc4 8
 
 #define PWM_PIN 9
 
@@ -17,4 +17,5 @@
 
 
 #define stepsPerRevolution 200 
+
 
