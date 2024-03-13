@@ -18,7 +18,7 @@ void setup_roba()
     Serial.begin(9600);
 }
 
-void moveAxis(Stepper stepper_motor, int how_much_to_rotate) 
+void moveAxis2(Stepper stepper_motor, int how_much_to_rotate) 
 {
     // una rotazione in una direzione
     Serial.println("Rotazione in corso");

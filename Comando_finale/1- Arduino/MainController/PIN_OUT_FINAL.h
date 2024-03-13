@@ -1,21 +1,24 @@
-#define dir_dc1 5
-#define dir_dc2 6
-#define dir_dc3 7
-#define dir_dc4 8
+#define dir_dc1 2
+#define dir_dc2 3
+#define dir_dc3 4
+#define dir_dc4 5
 
-#define PWM_PIN 9
+#define PWM_PIN 6
 
-#define dir_step1 10
-#define dir_step2 12
-#define dir_step3 14
-#define dir_step4 19
+#define dir_step1 7
+#define dir_step2 9
+#define dir_step3 11
+#define dir_step4 A0
 
-#define step1 11
-#define step2 13
-#define step3 15
-#define step4 16
+#define step1 8
+#define step2 10
+#define step3 12
+#define step4 13
 
 
 #define stepsPerRevolution 200 
+
+#define pwm_start_value 0
+
 
 
