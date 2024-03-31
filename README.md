@@ -9,8 +9,8 @@
   </p>
 </p>
 
-![Downloads](https://img.shields.io/github/downloads/STB1019/Progetto_Leonardo/total) ![Contributors](https://img.shields.io/github/contributors/STB1019/Progetto_Leonardo?color=dark-green)  ![Issues](https://img.shields.io/github/issues/STB1019/Progetto_Leonardo) ![Stargazers](https://img.shields.io/github/stars/STB1019/Progetto_Leonardo?style=social)
-
+<!--![Downloads](https://img.shields.io/github/downloads/STB1019/Progetto_Leonardo/total) ![Contributors](https://img.shields.io/github/contributors/STB1019/Progetto_Leonardo?color=dark-green)  ![Issues](https://img.shields.io/github/issues/STB1019/Progetto_Leonardo) ![Stargazers](https://img.shields.io/github/stars/STB1019/Progetto_Leonardo?style=social)
+-->
 ## Table Of Contents
 
 * [About the Project](#about-the-project)
