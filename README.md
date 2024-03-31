@@ -3,7 +3,7 @@
   <h1 align="center">Progetto Leonardo</h1>
 
   <p align="center">
-    An Ieee Student Branch Project
+    An IEEE Student Branch Project
     <br/>
     <br/>
   </p>
