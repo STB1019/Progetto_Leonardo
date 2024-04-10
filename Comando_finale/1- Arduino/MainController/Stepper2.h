@@ -7,7 +7,7 @@ const int stepPerRotazione = 200;
 
 // Creazione dell’istanza dello Stepper
 
-Stepper mioStepper(stepPerRotazione, A0,13);
+//Stepper mioStepper(stepPerRotazione, A0,13);
 
 void setup_roba()
 {

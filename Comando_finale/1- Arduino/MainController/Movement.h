@@ -41,7 +41,7 @@ void default_movement(){
   set_pwm(200, PWM_PIN);
 }
 
-
+/*
 void moveAxis(Stepper stepper_motor, int how_much_to_rotate) 
 {
     // una rotazione in una direzione
@@ -50,4 +50,4 @@ void moveAxis(Stepper stepper_motor, int how_much_to_rotate)
     delay(1000);
 
     
-}
+}*/
