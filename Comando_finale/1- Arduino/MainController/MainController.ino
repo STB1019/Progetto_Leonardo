@@ -18,6 +18,7 @@ void setup(){
   pinMode(dir_dc2, OUTPUT);
   pinMode(dir_dc3, OUTPUT);
   pinMode(dir_dc4, OUTPUT);
+  pinMode(PWM_PIN, OUTPUT);
   
 }
 void loop(){
@@ -32,9 +33,9 @@ void dummyMovement(){
   move(dir_dc2, LOW);
   move(dir_dc3, HIGH);
   move(dir_dc4, HIGH);
-
-  default_movement();
-
+  analogWrite(6, 200);
+  //default_movement();
+/*
   delay(2000);
   stop_movement();
   delay(2000);
@@ -54,5 +55,5 @@ void dummyMovement(){
   
 
 
-
+*/
 }

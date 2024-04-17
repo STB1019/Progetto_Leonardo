@@ -35,7 +35,7 @@ void loop() {
   digitalWrite(driver2_DC1,AAA);
   digitalWrite(driver2_DC2,AAA);
   delay(1000);
-  
+/*  
   BBB=1;
   AAA=0;
   analogWrite(PWM,200);
@@ -51,7 +51,7 @@ void loop() {
   digitalWrite(driver2_DC1,AAA);
   digitalWrite(driver2_DC2,AAA);
   delay(1000);  
-  
+  */
 
   
 }
