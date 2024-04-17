@@ -41,6 +41,41 @@ void default_movement(){
   set_pwm(200, PWM_PIN);
 }
 
+
+void forward(){
+  move(dir_dc1, LOW);
+  move(dir_dc2, LOW);
+  move(dir_dc3, HIGH);
+  move(dir_dc4, HIGH);
+}
+
+void back(){
+  move(dir_dc1, HIGH);
+  move(dir_dc2, HIGH);
+  move(dir_dc3, LOW);
+  move(dir_dc4, LOW);
+
+}
+
+void left(){
+  
+  move(dir_dc1, LOW);
+  move(dir_dc2, LOW);
+  move(dir_dc3, LOW);
+  move(dir_dc4, LOW);
+
+}
+
+void right(){
+  
+  move(dir_dc1, HIGH);
+  move(dir_dc2, HIGH);
+  move(dir_dc3, HIGH);
+  move(dir_dc4, HIGH);
+  
+}
+
+
 /*
 void moveAxis(Stepper stepper_motor, int how_much_to_rotate) 
 {
