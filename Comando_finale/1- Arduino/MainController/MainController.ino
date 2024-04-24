@@ -34,8 +34,41 @@ void setup(){
 }
 void loop(){
 
-  dummyStepper();
+  //dummyStepper();
+  dummyMovement2();
+}
 
+
+void dummyMovement2(){
+  
+  forward();
+
+  
+  //default_movement();
+  delay(2000);
+  stop_movement();
+  delay(2000);
+
+  back();
+  
+  //default_movement();
+  delay(2000);
+  stop_movement();
+  delay(2000);
+
+  left();
+  
+  //default_movement();
+  delay(2000);
+  stop_movement();
+  delay(2000);
+
+  right();
+
+  //default_movement();
+  delay(2000);
+  stop_movement();
+  delay(2000);
 }
 
 //TO BE TESTED THE MOTOR MAPPING

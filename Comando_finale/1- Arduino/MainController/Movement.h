@@ -43,35 +43,35 @@ void default_movement(){
 
 
 void forward(){
-  move(dir_dc1, LOW);
-  move(dir_dc2, LOW);
-  move(dir_dc3, HIGH);
-  move(dir_dc4, HIGH);
+  move(dir_dc1, false);
+  move(dir_dc2, false);
+  move(dir_dc3, true);
+  move(dir_dc4, true);
 }
 
 void back(){
-  move(dir_dc1, HIGH);
-  move(dir_dc2, HIGH);
-  move(dir_dc3, LOW);
-  move(dir_dc4, LOW);
+  move(dir_dc1, true);
+  move(dir_dc2, true);
+  move(dir_dc3, false);
+  move(dir_dc4, false);
 
 }
 
 void left(){
   
-  move(dir_dc1, LOW);
-  move(dir_dc2, LOW);
-  move(dir_dc3, LOW);
-  move(dir_dc4, LOW);
+  move(dir_dc1, false);
+  move(dir_dc2, false);
+  move(dir_dc3, false);
+  move(dir_dc4, false);
 
 }
 
 void right(){
   
-  move(dir_dc1, HIGH);
-  move(dir_dc2, HIGH);
-  move(dir_dc3, HIGH);
-  move(dir_dc4, HIGH);
+  move(dir_dc1, true);
+  move(dir_dc2, true);
+  move(dir_dc3, true);
+  move(dir_dc4, true);
   
 }
 
