@@ -34,7 +34,7 @@ void setup(){
 }
 void loop(){
 
-  dummyMovement();
+  dummyStepper();
 
 }
 
