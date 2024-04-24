@@ -117,16 +117,28 @@ void setup() {
   pinMode(dirPin4, OUTPUT);
 }
 */
-void moveAxis(int dir_pin_axis, int step_pin_axis, bool direction) {
+
+/*
+function for automatic detection of direction and movement of the stepper motor on the linear asix
+- dir_pin_axis : abilitation of the motor direction
+- step_pin_axis : define direction of the
+- direction : define direction of the movement. True = up, False = down
+- timer_microsseconds : parameter that defines the lenght of the movement
+
+*/
+
+void moveAxis(int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds) {
+
   digitalWrite(dir_pin_axis , HIGH);
 
   for (int i = 0; i < 5 * stepsPerRevolution; i++) {
   
       digitalWrite(step_pin_axis, direction);
-      delayMicroseconds(500);
+      delayMicroseconds(timer_microseconds);
     
   }
   
+  digitalWrite(dir_pin_axis, LOW);
 }  
   
 
