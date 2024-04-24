@@ -3,12 +3,10 @@ import tkinter.font as tkFont
 #import rospy
 import serial
 #from geometry_msgs.msg import Twist
-
-#import serial
 import time
 
 
-s = serial.Serial('/dev/ttyUSB0', 9600) ####### change name, if needed
+#s = serial.Serial('/dev/ttyUSB0', 9600) ####### change name, if needed
 #s.open()
 time.sleep(5) # the Arduino is reset after enabling the serial connectio, therefore we have to wait some seconds
  
@@ -42,7 +40,8 @@ class App:
         GButton_UP["justify"] = "center"
         GButton_UP["text"] = "⇪"
         GButton_UP.place(x=240,y=100,width=100,height=100)
-        GButton_UP["command"] = self.GButton_UP_command
+        GButton_UP.bind("<ButtonPress>", self.GButton_UP_command)
+        GButton_UP.bind("<ButtonRelease>", self.GButton_UP_command_Release)
 
         GButton_DOWN=tk.Button(root)
         GButton_DOWN["activebackground"] = "#1872c6"
@@ -54,7 +53,8 @@ class App:
         GButton_DOWN["justify"] = "center"
         GButton_DOWN["text"] = "⇩"
         GButton_DOWN.place(x=240,y=210,width=100,height=100)
-        GButton_DOWN["command"] = self.GButton_DOWN_command
+        GButton_DOWN.bind("<ButtonPress>",self.GButton_DOWN_command)
+        GButton_DOWN.bind("<ButtonRelease>", self.GButton_DOWN_command_Release)
 
         GButton_234=tk.Button(root)
         GButton_234["activebackground"] = "#1872c6"
@@ -66,7 +66,8 @@ class App:
         GButton_234["justify"] = "center"
         GButton_234["text"] = "⇦"
         GButton_234.place(x=130,y=210,width=100,height=100)
-        GButton_234["command"] = self.GButton_234_command
+        GButton_234.bind("<ButtonPress>", self.GButton_234_command)
+        GButton_234.bind("<ButtonRelease>", self.GButton_234_command_Release)
 
         GButton_727=tk.Button(root)
         GButton_727["activebackground"] = "#1872c6"
@@ -78,7 +79,8 @@ class App:
         GButton_727["justify"] = "center"
         GButton_727["text"] = "⇨"
         GButton_727.place(x=350,y=210,width=100,height=100)
-        GButton_727["command"] = self.GButton_727_command
+        GButton_727.bind("<ButtonPress>", self.GButton_727_command)
+        GButton_727.bind("<ButtonRelease>", self.GButton_727_command_Release)
 
         GLabel_493=tk.Label(root)
         GLabel_493["bg"] = "#0007ff"
@@ -98,7 +100,7 @@ class App:
         GButton_320["justify"] = "center"
         GButton_320["text"] = "☢"
         GButton_320.place(x=130,y=100,width=100,height=100)
-        GButton_320["command"] = self.GButton_320_command
+        GButton_320.bind("<ButtonPress>", self.GButton_320_command)
 
         GButton_69=tk.Button(root)
         GButton_69["bg"] = "#f0f0f0"
@@ -108,7 +110,7 @@ class App:
         GButton_69["justify"] = "center"
         GButton_69["text"] = "↺"
         GButton_69.place(x=350,y=100,width=100,height=100)
-        GButton_69["command"] = self.GButton_69_command
+        GButton_69.bind("<ButtonPress>", self.GButton_69_command)
 
         GButton_293=tk.Button(root)
         GButton_293["bg"] = "#f0f0f0"
@@ -118,7 +120,7 @@ class App:
         GButton_293["justify"] = "center"
         GButton_293["text"] = "↧"
         GButton_293.place(x=210,y=370,width=160,height=50)
-        GButton_293["command"] = self.GButton_293_command
+        GButton_293.bind("<ButtonPress>", self.GButton_293_command)
 
         GButton_949=tk.Button(root)
         GButton_949["bg"] = "#f0f0f0"
@@ -128,7 +130,7 @@ class App:
         GButton_949["justify"] = "center"
         GButton_949["text"] = "↥"
         GButton_949.place(x=210,y=430,width=160,height=50)
-        GButton_949["command"] = self.GButton_949_command
+        GButton_949.bind("<ButtonPress>", self.GButton_949_command)
 
         GButton_754=tk.Button(root)
         GButton_754["bg"] = "#f0f0f0"
@@ -138,7 +140,7 @@ class App:
         GButton_754["justify"] = "center"
         GButton_754["text"] = "↧"
         GButton_754.place(x=40,y=370,width=160,height=50)
-        GButton_754["command"] = self.GButton_754_command
+        GButton_754.bind("<ButtonPress>", self.GButton_754_command)
 
         GButton_572=tk.Button(root)
         GButton_572["bg"] = "#f0f0f0"
@@ -148,7 +150,7 @@ class App:
         GButton_572["justify"] = "center"
         GButton_572["text"] = "↥"
         GButton_572.place(x=40,y=430,width=160,height=50)
-        GButton_572["command"] = self.GButton_572_command
+        GButton_572.bind("<ButtonPress>", self.GButton_572_command)
 
         GButton_490=tk.Button(root)
         GButton_490["bg"] = "#f0f0f0"
@@ -158,7 +160,7 @@ class App:
         GButton_490["justify"] = "center"
         GButton_490["text"] = "↧"
         GButton_490.place(x=380,y=370,width=160,height=50)
-        GButton_490["command"] = self.GButton_490_command
+        GButton_490.bind("<ButtonPress>", self.GButton_490_command)
 
         GButton_567=tk.Button(root)
         GButton_567["bg"] = "#f0f0f0"
@@ -168,7 +170,7 @@ class App:
         GButton_567["justify"] = "center"
         GButton_567["text"] = "↥"
         GButton_567.place(x=380,y=430,width=160,height=50)
-        GButton_567["command"] = self.GButton_567_command
+        GButton_567.bind("<ButtonPress>", self.GButton_567_command)
 
         GButton_415=tk.Button(root)
         GButton_415["bg"] = "#f0f0f0"
@@ -178,7 +180,7 @@ class App:
         GButton_415["justify"] = "center"
         GButton_415["text"] = "↤"
         GButton_415.place(x=40,y=550,width=240,height=50)
-        GButton_415["command"] = self.GButton_415_command
+        GButton_415.bind("<ButtonPress>", self.GButton_415_command)
 
         GLabel_847=tk.Label(root)
         GLabel_847["bg"] = "#1e90ff"
@@ -215,7 +217,7 @@ class App:
         GButton_350["justify"] = "center"
         GButton_350["text"] = "↦"
         GButton_350.place(x=300,y=550,width=240,height=50)
-        GButton_350["command"] = self.GButton_350_command
+        GButton_350.bind("<ButtonPress>", self.GButton_350_command)
 
         GLabel_225=tk.Label(root)
         GLabel_225["bg"] = "#1e90ff"
@@ -226,60 +228,71 @@ class App:
         GLabel_225["text"] = "Linear 4"
         GLabel_225.place(x=230,y=510,width=120,height=30)
 
-    def GButton_UP_command(self):
+    def GButton_UP_command(self, event):
+        s.write('1'.encode("ascii"))
+        
+    def GButton_UP_command_Release(self, event):
         s.write('1'.encode("ascii"))
 
 
-    def GButton_DOWN_command(self):
+    def GButton_DOWN_command(self, event):
+        s.write('2'.encode("ascii"))
+        
+    def GButton_DOWN_command_Release(self, event):
         s.write('2'.encode("ascii"))
 
 
-    def GButton_234_command(self):
+    def GButton_234_command(self, event):
+        s.write('3'.encode("ascii"))
+        
+    def GButton_234_command_Release(self, event):
         s.write('3'.encode("ascii"))
 
-
-    def GButton_727_command(self):
+    def GButton_727_command(self, event):
+        s.write('4'.encode("ascii"))
+    
+    def GButton_727_command_Release(self, event):
         s.write('4'.encode("ascii"))
 
 
-    def GButton_320_command(self):
+    def GButton_320_command(self, event):
         s.write('0'.encode("ascii"))
         s.close()
 
 
-    def GButton_69_command(self):
+    def GButton_69_command(self, event):
         s.write('6'.encode("ascii"))
 
 
-    def GButton_293_command(self):
+    def GButton_293_command(self, event):
         s.write('7'.encode("ascii"))
 
 
-    def GButton_949_command(self):
+    def GButton_949_command(self, event):
         s.write('8'.encode("ascii"))
 
 
-    def GButton_754_command(self):
+    def GButton_754_command(self, event):
         s.write('9'.encode("ascii"))
 
 
-    def GButton_572_command(self):
+    def GButton_572_command(self, event):
         s.write('10'.encode("ascii"))
 
 
-    def GButton_490_command(self):
+    def GButton_490_command(self, event):
         s.write('11'.encode("ascii"))
 
 
-    def GButton_567_command(self):
+    def GButton_567_command(self, event):
         s.write('12'.encode("ascii"))
 
 
-    def GButton_415_command(self):
+    def GButton_415_command(self, event):
         s.write('13'.encode("ascii"))
 
 
-    def GButton_350_command(self):
+    def GButton_350_command(self, event):
         s.write('14'.encode("ascii"))
 
 
