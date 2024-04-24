@@ -30,7 +30,7 @@ void setup(){
   pinMode(step3, OUTPUT);
   pinMode(step4, OUTPUT);
   
-  int delay_time = 1000;  
+    
 }
 void loop(){
 
@@ -40,7 +40,7 @@ void loop(){
 
 
 void dummyMovement2(){
-  
+  int delay_time = 300;
   forward();
 
   
@@ -49,6 +49,7 @@ void dummyMovement2(){
   stop_movement();
   delay(delay_time);
 
+  delay(1000);
   back();
   
   //default_movement();
@@ -56,6 +57,8 @@ void dummyMovement2(){
   stop_movement();
   delay(delay_time);
 
+  delay(1000);
+/*
   left();
   
   //default_movement();
@@ -69,6 +72,7 @@ void dummyMovement2(){
   delay(delay_time);
   stop_movement();
   delay(delay_time);
+*/
 }
 
 //TO BE TESTED THE MOTOR MAPPING
