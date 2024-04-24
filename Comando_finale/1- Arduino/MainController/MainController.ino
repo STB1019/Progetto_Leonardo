@@ -19,6 +19,17 @@ void setup(){
   pinMode(dir_dc3, OUTPUT);
   pinMode(dir_dc4, OUTPUT);
   pinMode(PWM_PIN, OUTPUT);
+
+  pinMode(dir_step1, OUTPUT);
+  pinMode(dir_step2, OUTPUT);
+  pinMode(dir_step3, OUTPUT);
+  pinMode(dir_step4, OUTPUT);
+  
+  pinMode(step1, OUTPUT);
+  pinMode(step2, OUTPUT);
+  pinMode(step3, OUTPUT);
+  pinMode(step4, OUTPUT);
+  
   
 }
 void loop(){
@@ -56,4 +67,32 @@ void dummyMovement(){
 
 
 */
+}
+
+
+void dummyStepper(){
+  int timer_micro = 500;
+  moveAxis(dir_dc1, step1, HIGH, timer_micro);
+  delay(500);
+  
+  moveAxis(dir_dc1, step1, LOW, timer_micro);
+  delay(500);
+  
+  moveAxis(dir_dc2, step2, HIGH, timer_micro);
+  delay(500);
+  
+  moveAxis(dir_dc2, step2, LOW, timer_micro);
+  delay(500);
+  
+  moveAxis(dir_dc3, step3, HIGH, timer_micro);
+  delay(500);
+  
+  moveAxis(dir_dc3, step3, LOW, timer_micro);
+  delay(500);
+  
+  moveAxis(dir_dc4, step4, HIGH, timer_micro);
+  delay(500); 
+  
+  moveAxis(dir_dc4, step4, LOW, timer_micro);
+  delay(500);
 }

@@ -106,15 +106,7 @@ Example sketch to control a stepper motor with A4988 stepper motor driver and Ar
 #define stepsPerRevolution 200
 
 void setup() {
-  // Declare pins as output:
-  pinMode(stepPin1, OUTPUT);
-  pinMode(dirPin1, OUTPUT);
-  pinMode(stepPin2, OUTPUT);
-  pinMode(dirPin2, OUTPUT);
-  pinMode(stepPin3, OUTPUT);
-  pinMode(dirPin3, OUTPUT);
-  pinMode(stepPin4, OUTPUT);
-  pinMode(dirPin4, OUTPUT);
+  // Declare pins as output
 }
 */
 
