@@ -127,6 +127,7 @@ void moveAxis(int dir_pin_axis, int step_pin_axis, bool direction, int timer_mic
   
       digitalWrite(step_pin_axis, direction);
       delayMicroseconds(timer_microseconds);
+      digitalWrite(step_pin_axis, !direction);
     
   }
   
