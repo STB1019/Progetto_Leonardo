@@ -109,27 +109,27 @@ void dummyMovement(){
 
 void dummyStepper(){
   int timer_micro = 500;
-  moveAxis(dir_dc1, step1, HIGH, timer_micro);
+  moveAxis(dir_dc1, step1, true, timer_micro);
   delay(500);
   
-  moveAxis(dir_dc1, step1, LOW, timer_micro);
+  moveAxis(dir_dc1, step1, false, timer_micro);
   delay(500);
   
-  moveAxis(dir_dc2, step2, HIGH, timer_micro);
+  moveAxis(dir_dc2, step2, true, timer_micro);
   delay(500);
   
-  moveAxis(dir_dc2, step2, LOW, timer_micro);
+  moveAxis(dir_dc2, step2, false, timer_micro);
   delay(500);
   
-  moveAxis(dir_dc3, step3, HIGH, timer_micro);
+  moveAxis(dir_dc3, step3, true, timer_micro);
   delay(500);
   
-  moveAxis(dir_dc3, step3, LOW, timer_micro);
+  moveAxis(dir_dc3, step3, false, timer_micro);
   delay(500);
   
-  moveAxis(dir_dc4, step4, HIGH, timer_micro);
+  moveAxis(dir_dc4, step4, true, timer_micro);
   delay(500); 
   
-  moveAxis(dir_dc4, step4, LOW, timer_micro);
+  moveAxis(dir_dc4, step4, false, timer_micro);
   delay(500);
 }
