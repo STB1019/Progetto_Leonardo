@@ -1,31 +1,28 @@
 #include "PIN_OUT_FINAL.h"
 
-int pwm_value = pwm_start_value;
-
-int tmp_pwm = 0; 
 
 void move(int motor, bool direction){
   digitalWrite(motor, direction);
 }
 
 //automatic setter of the pwm value in decreasing and increasing pwm value modes
-void set_pwm(int pwm_v, int pwm_pin){
+void set_pwm(int pwm_pin, int pwm_v){
+  int pwm_value = analogRead(pwm_pin);
   if(pwm_v > pwm_value){
     for(int i=pwm_value; i<=pwm_v; i++){
-      delay(10);
+      delay(50);
       analogWrite(pwm_pin, i);
-      tmp_pwm = i;
+
     }
-    pwm_value = tmp_pwm;
+    
 
   }
   else{
     for(int i=pwm_value; i>=pwm_v; i--){
-      delay(10);
+      delay(50);
       analogWrite(pwm_pin, i);
-      tmp_pwm = i;
     }
-    pwm_value = tmp_pwm;
+    
   }
   
 }
@@ -33,12 +30,12 @@ void set_pwm(int pwm_v, int pwm_pin){
 
 //method to stop the movement of the DC mothors
 void stop_movement(){
-  set_pwm(0, PWM_PIN);
+  set_pwm(PWM_PIN, 0);
 }
 
 //default value of the PWM signal controlling the DC motors
 void default_movement(){
-  set_pwm(200, PWM_PIN);
+  set_pwm(PWM_PIN, 200);
 }
 
 

@@ -30,6 +30,8 @@ void setup(){
   pinMode(step3, OUTPUT);
   pinMode(step4, OUTPUT);
   
+  //security measure
+  analogWrite(PWM_PIN, 0);
     
 }
 void loop(){
