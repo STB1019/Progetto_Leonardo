@@ -6,12 +6,12 @@ void move(int motor, bool direction){
 }
 
 //automatic setter of the pwm value in decreasing and increasing pwm value modes
-void set_pwm(int pwm_pin, int pwm_v){
-  int pwm_value = analogRead(pwm_pin);
+void set_pwm(int pwm_v){
+  int pwm_value = analogRead(PWM_PIN);
   if(pwm_v > pwm_value){
     for(int i=pwm_value; i<=pwm_v; i++){
       delay(50);
-      analogWrite(pwm_pin, i);
+      analogWrite(PWM_PIN, i);
 
     }
     
@@ -20,7 +20,7 @@ void set_pwm(int pwm_pin, int pwm_v){
   else{
     for(int i=pwm_value; i>=pwm_v; i--){
       delay(50);
-      analogWrite(pwm_pin, i);
+      analogWrite(PWM_PIN, i);
     }
     
   }
@@ -30,12 +30,12 @@ void set_pwm(int pwm_pin, int pwm_v){
 
 //method to stop the movement of the DC mothors
 void stop_movement(){
-  set_pwm(PWM_PIN, 0);
+  set_pwm(0);
 }
 
 //default value of the PWM signal controlling the DC motors
 void default_movement(){
-  set_pwm(PWM_PIN, 200);
+  set_pwm(200);
 }
 
 

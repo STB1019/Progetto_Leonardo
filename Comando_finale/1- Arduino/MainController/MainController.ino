@@ -47,16 +47,20 @@ void dummyMovement2(){
 
   
   //default_movement();
+  set_pwm(200);
   delay(delay_time);
-  stop_movement();
+  //stop_movement();
+  set_pwm(0);
   delay(delay_time);
 
   delay(1000);
   back();
   
   //default_movement();
+  set_pwm(200);
   delay(delay_time);
-  stop_movement();
+  //stop_movement();
+  set_pwm(0);
   delay(delay_time);
 
   delay(1000);
