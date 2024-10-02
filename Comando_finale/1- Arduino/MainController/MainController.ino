@@ -1,4 +1,4 @@
-//#include "Serial_communication.h"
+#include "Serial_communication.h"
 #include "PIN_OUT_FINAL.h"
 //#include "Stepper2.h"
 //#include "Sonar_Completo_Leonardo.h"
@@ -13,6 +13,7 @@ Stepper Stepper3(stepsPerRevolution, dir_step3,step3);
 Stepper Stepper4(stepsPerRevolution, dir_step4,step4);  */
 
 void setup(){
+  serial_comm_opener();
   
   pinMode(dir_dc1, OUTPUT);
   pinMode(dir_dc2, OUTPUT);

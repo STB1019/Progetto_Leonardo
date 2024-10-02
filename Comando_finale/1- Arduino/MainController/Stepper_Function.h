@@ -11,7 +11,7 @@
  * This function doesn't need external libreries
  * Thomas :)
 */
-int moveMotor(bool rotDir, const int dirPin, const int stepPin, int delayMicr, int stepPRevMult, int currentPos){
+int moveMotor_old(bool rotDir, const int dirPin, const int stepPin, int delayMicr, int stepPRevMult, int currentPos){
 
   /*
    * I choose if the direction is clockwise or not, and calculate the currentPos
