@@ -13,7 +13,7 @@ Stepper Stepper3(stepsPerRevolution, dir_step3,step3);
 Stepper Stepper4(stepsPerRevolution, dir_step4,step4);  */
 
 void setup(){
-  serial_comm_opener();
+
   
   pinMode(dir_dc1, OUTPUT);
   pinMode(dir_dc2, OUTPUT);
@@ -37,8 +37,18 @@ void setup(){
 }
 void loop(){
 
-  //dummyStepper();
-  dummyMovement2();
+  
+}
+
+void serial_write_test(){
+  
+  serial_comm_opener();
+  for(int i=0; i<10; i++){
+    Serial_writer("ciao");
+    delay(100);
+  }
+  serial_comm_closer();
+  
 }
 
 
