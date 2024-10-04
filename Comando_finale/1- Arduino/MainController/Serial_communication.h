@@ -49,29 +49,42 @@ void Serial_writer(String stringa){
 }
 
 String Serial_listener(){
+  String serial_mex = "no new messages";
   if(!Serial.available()){
-    String serial_mex = Serial.readString();
-    return serial_mex;
+    serial_mex = Serial.readStringUntil('\n');    
   }
-/*
-  else{
-    //String serial_mex = "Something's wrong, i can feel it";
-  }
-  */
-  
+  return serial_mex;
 }
 
-/*
-Function to analyze in which direction moving for how long 
+//reverses the string, for an easy access of the first 8 characters, then it takes the first 8 reversed characters to compose a 8-character message
 
-format of the messages: MMMMDDDD
+String stringaFormatter(String stringa){
+
+  int len = stringa.length()-1; //cropping the \n character
+  String string_formatted = "";
+  for(int i = 0; i<8; i++){
+    string_formatted[7-i]=stringa[len-i-1];
+  } 
+  return string_formatted;
+}
+
+
+
+/*
+Function to analyze in which direction moving and for how long 
+
+format of the messages: MMMDDDDK
+
+MMM : characters for movement
+DDDD : timer 0 - 9999 for movement
+K : key character for message
 
     ###   DC DIRECTION    ###
 
-FRWD  ->  Leonardo moving forward
-BACK  ->  Leonardo moving backwards
-LEFT  ->  Leonardo turning  left
-RGTH  ->  Leonardo turning right
+FWD  ->  Leonardo moving forward
+BCK  ->  Leonardo moving backwards
+LFT  ->  Leonardo turning  left
+RGH  ->  Leonardo turning right
 
     ###   STEPPER DIRECTION   ###
 
@@ -88,7 +101,9 @@ S4DN  ->  moving balance axis down
 
 void Serial_analyzer(String mex){
 
-  
+  //retrieving how much time to move. time between 0 and 9999 milliseconds
+  int timer = int(mex[4])*1000 + int(mex[5])*100 + int(mex[6])*10 + int(mex[7]);
+  delay(timer);
   //check if i need to move a stepper motor
   if(mex[0] == "S"){
     
@@ -102,6 +117,7 @@ void Serial_analyzer(String mex){
       case 1:
           //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
           //moveAxis(,,bool_dir,);
+          
       break;
 
       case 2:

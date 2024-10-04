@@ -51,6 +51,14 @@ void serial_write_test(){
   
 }
 
+void serial_read_test(){
+  serial_comm_opener();
+  Serial.println(stringaFormatter(Serial_listener()));
+  delay(1000);
+  serial_comm_closer();
+}
+
+
 
 void dummyMovement2(){
   int delay_time = 300;
