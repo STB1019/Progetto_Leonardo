@@ -49,17 +49,112 @@ void Serial_writer(String stringa){
 }
 
 String Serial_listener(){
-  String serial_mex = "";
   if(!Serial.available()){
-    serial_mex = Serial.readString();
+    String serial_mex = Serial.readString();
+    return serial_mex;
   }
-
+/*
   else{
-    serial_mex = "Something's wrong, i can feel it";
+    //String serial_mex = "Something's wrong, i can feel it";
   }
+  */
   
-  return serial_mex;
 }
+
+/*
+Function to analyze in which direction moving for how long 
+
+format of the messages: MMMMDDDD
+
+    ###   DC DIRECTION    ###
+
+FRWD  ->  Leonardo moving forward
+BACK  ->  Leonardo moving backwards
+LEFT  ->  Leonardo turning  left
+RGTH  ->  Leonardo turning right
+
+    ###   STEPPER DIRECTION   ###
+
+
+S1UP  ->  moving front axis up
+S1DN ->  moving front axis down
+S2UP  ->  moving middle axis up
+S2DN  ->  moving middle axis down
+S3UP  ->  moving back axis up
+S3DN  ->  moving back axis down
+S4UP  ->  moving balance axis up
+S4DN  ->  moving balance axis down
+*/
+
+void Serial_analyzer(String mex){
+
+  
+  //check if i need to move a stepper motor
+  if(mex[0] == "S"){
+    
+    bool bool_dir = false;
+
+    if(mex[2] == "U"){
+      bool_dir = true;
+    }
+    
+    switch(mex[1]){
+      case 1:
+          //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
+          //moveAxis(,,bool_dir,);
+      break;
+
+      case 2:
+          //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
+          //moveAxis(,,bool_dir,);
+      break;
+
+      case 3:
+          //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
+          //moveAxis(,,bool_dir,);
+      break;
+
+      case 4:
+          //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
+          //moveAxis(,,bool_dir,);
+      break;
+
+      default:
+        Serial.println("Something's wrong, i can feel it");
+  
+      break;
+    }
+  }
+  else{
+    switch(mex[0]){
+      case 'F':
+          //forward();
+      break;
+
+      case 'B':
+          //back();
+      break;
+
+      case 'L':
+          //left();
+      break;
+
+      case 'R':
+          //right();
+      break;
+
+      default:
+        Serial.println("Something's wrong, i can feel it");
+  
+      break;
+    }
+  } 
+}
+
+
+
+
+
 /*
 void Serial_writer_EXC(String sonar_values){
   try{
