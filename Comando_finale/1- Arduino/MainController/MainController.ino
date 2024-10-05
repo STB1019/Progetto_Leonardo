@@ -40,22 +40,22 @@ void loop(){
   
 }
 
-void serial_write_test(){
+void serialWriteTest(){
   
-  serial_comm_opener();
+  serialCommOpener();
   for(int i=0; i<10; i++){
     Serial_writer("ciao");
     delay(100);
   }
-  serial_comm_closer();
+  serialCommCloser();
   
 }
 
-void serial_read_test(){
-  serial_comm_opener();
-  Serial.println(stringaFormatter(Serial_listener()));
+void serialReadTest(){
+  serialCommOpener();
+  Serial.println(stringFormatter(serialListener()));
   delay(1000);
-  serial_comm_closer();
+  serialCommCloser();
 }
 
 

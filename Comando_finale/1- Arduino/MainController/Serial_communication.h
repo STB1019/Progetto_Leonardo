@@ -1,6 +1,6 @@
 //to enable exceptions you have to manually configure the IDE
 
-void serial_comm_opener(){
+void serialCommOpener(){
     
     //serial_movement.begin(1000);
     //serial_sonar.begin(2000);
@@ -9,7 +9,7 @@ void serial_comm_opener(){
 
 }
 
-void serial_comm_closer(){
+void serialCommCloser(){
 
   Serial.println("Closing all serial communications");
   //serial_movement.end();
@@ -20,7 +20,7 @@ void serial_comm_closer(){
 
 }
 /*
-String Serial_listener_EXC(){
+String serialListenerEXC(){
 
   String serial_mex;
   try{
@@ -36,7 +36,7 @@ String Serial_listener_EXC(){
 }*/
 
 
-void Serial_writer(String stringa){
+void serialWriter(String stringa){
   
   if(Serial.available()){
       Serial.println(String(stringa));
@@ -48,7 +48,7 @@ void Serial_writer(String stringa){
   
 }
 
-String Serial_listener(){
+String serialListener(){
   String serial_mex = "no new messages";
   if(!Serial.available()){
     serial_mex = Serial.readStringUntil('\n');    
@@ -58,7 +58,7 @@ String Serial_listener(){
 
 //reverses the string, for an easy access of the first 8 characters, then it takes the first 8 reversed characters to compose a 8-character message
 
-String stringaFormatter(String stringa){
+String stringFormatter(String stringa){
 
   int len = stringa.length()-1; //cropping the \n character
   String string_formatted = "";
@@ -89,20 +89,20 @@ RGH  ->  Leonardo turning right
     ###   STEPPER DIRECTION   ###
 
 
-S1UP  ->  moving front axis up
-S1DN ->  moving front axis down
-S2UP  ->  moving middle axis up
-S2DN  ->  moving middle axis down
-S3UP  ->  moving back axis up
-S3DN  ->  moving back axis down
-S4UP  ->  moving balance axis up
-S4DN  ->  moving balance axis down
+S1U  ->  moving front axis up
+S1D ->  moving front axis down
+S2U  ->  moving middle axis up
+S2D  ->  moving middle axis down
+S3U  ->  moving back axis up
+S3D  ->  moving back axis down
+S4U  ->  moving balance axis up
+S4D  ->  moving balance axis down
 */
 
-void Serial_analyzer(String mex){
+void serialAnalyzer(String mex){
 
   //retrieving how much time to move. time between 0 and 9999 milliseconds
-  int timer = int(mex[4])*1000 + int(mex[5])*100 + int(mex[6])*10 + int(mex[7]);
+  int timer = int(mex[3])*1000 + int(mex[4])*100 + int(mex[5])*10 + int(mex[6]);
   delay(timer);
   //check if i need to move a stepper motor
   if(mex[0] == "S"){
@@ -172,7 +172,7 @@ void Serial_analyzer(String mex){
 
 
 /*
-void Serial_writer_EXC(String sonar_values){
+void serialWriterEXC(String sonar_values){
   try{
   if(Serial.available()){
       Serial.write(String(sonar_values));

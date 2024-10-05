@@ -112,7 +112,7 @@ function for automatic detection of direction and movement of the stepper motor 
 - dir_pin_axis : abilitation of the motor direction
 - step_pin_axis : define direction of the
 - direction : define direction of the movement. True = up, False = down
-- timer_microsseconds : parameter that defines the lenght of the movement
+- timer_microseconds : parameter that defines the lenght of the movement
 
 */
 
