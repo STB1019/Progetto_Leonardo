@@ -43,7 +43,7 @@ void serialWriter(String stringa){
   }
   else{
     delay(1);
-    Serial_writer(stringa);
+    serialWriter(stringa);
   }
   
 }
@@ -101,6 +101,12 @@ S4D  ->  moving balance axis down
 
 void serialAnalyzer(String mex){
 
+  if(mex =="12345678"){
+
+    serialCommCloser();
+    
+  }
+
   //retrieving how much time to move. time between 0 and 9999 milliseconds
   int timer = int(mex[3])*1000 + int(mex[4])*100 + int(mex[5])*10 + int(mex[6]);
   delay(timer);
@@ -145,26 +151,35 @@ void serialAnalyzer(String mex){
     switch(mex[0]){
       case 'F':
           //forward();
+
+          serialWriter("avanti");
       break;
 
       case 'B':
           //back();
+          serialWriter("indietro");
       break;
 
       case 'L':
           //left();
+          serialWriter("sinistra");
       break;
 
       case 'R':
           //right();
+          serialWriter("destra");
       break;
 
       default:
         Serial.println("Something's wrong, i can feel it");
+        mex = String("paperella gay");
+        Serial.println(String(mex));
   
       break;
     }
   } 
+
+  
 }
 
 

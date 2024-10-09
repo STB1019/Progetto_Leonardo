@@ -12,6 +12,10 @@ Stepper Stepper2(stepsPerRevolution, dir_step2,step2);
 Stepper Stepper3(stepsPerRevolution, dir_step3,step3);
 Stepper Stepper4(stepsPerRevolution, dir_step4,step4);  */
 
+
+String stringa = "aaaaa";
+String stringaold = "";
+
 void setup(){
 
   
@@ -33,10 +37,31 @@ void setup(){
   
   //security measure
   analogWrite(PWM_PIN, 0);
+
+  //serialCommCloser();
+  delay(1000);
+  serialCommOpener();
+  
     
 }
 void loop(){
 
+  
+
+  
+    
+    stringa = Serial.readStringUntil('\n');
+      if(stringa != stringaold){
+        stringaold = stringa;
+        serialAnalyzer(stringa);
+        
+      }
+  
+
+
+
+
+delay(1000);
   
 }
 
@@ -44,18 +69,30 @@ void serialWriteTest(){
   
   serialCommOpener();
   for(int i=0; i<10; i++){
-    Serial_writer("ciao");
+    serialWriter("ciao");
     delay(100);
   }
   serialCommCloser();
   
 }
 
-void serialReadTest(){
-  serialCommOpener();
-  Serial.println(stringFormatter(serialListener()));
-  delay(1000);
-  serialCommCloser();
+void serialReadTest(String stringa){
+
+
+
+
+
+
+  
+  
+    if(stringa =="12345678"){
+
+    serialCommCloser();
+    
+  }
+  serialAnalyzer(stringa);
+    delay(1000);
+  
 }
 
 
