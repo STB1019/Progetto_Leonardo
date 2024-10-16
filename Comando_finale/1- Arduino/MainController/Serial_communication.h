@@ -38,11 +38,10 @@ String serialListenerEXC(){
 
 void serialWriter(String stringa){
   
-  if(Serial.available()){
-      Serial.println(String(stringa));
+  if(Serial.availableForWrite()){
+      Serial.println(stringa);
   }
   else{
-    delay(1);
     serialWriter(stringa);
   }
   
@@ -101,6 +100,11 @@ S4D  ->  moving balance axis down
 
 void serialAnalyzer(String mex){
 
+  Serial.println(mex+" entrato in serialAnalyzer");
+  int max = 10;
+  //char mex[max];
+  //mex_s.toCharArray(mex, max);
+
   if(mex =="12345678"){
 
     serialCommCloser();
@@ -108,18 +112,18 @@ void serialAnalyzer(String mex){
   }
 
   //retrieving how much time to move. time between 0 and 9999 milliseconds
-  int timer = int(mex[3])*1000 + int(mex[4])*100 + int(mex[5])*10 + int(mex[6]);
-  delay(timer);
+  //int timer = int(mex[3])*1000 + int(mex[4])*100 + int(mex[5])*10 + int(mex[6]);
+  //delay(timer);
   //check if i need to move a stepper motor
-  if(mex[0] == "S"){
+  if(mex.charAt(0) == 'S'){
     
     bool bool_dir = false;
 
-    if(mex[2] == "U"){
+    if(mex.charAt(2) == 'U'){
       bool_dir = true;
     }
     
-    switch(mex[1]){
+    switch(mex.charAt(1)){
       case 1:
           //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
           //moveAxis(,,bool_dir,);
@@ -148,7 +152,8 @@ void serialAnalyzer(String mex){
     }
   }
   else{
-    switch(mex[0]){
+    Serial.println(mex+" entrato in gestione dc");
+    switch(mex.charAt(0)){
       case 'F':
           //forward();
 
@@ -172,8 +177,9 @@ void serialAnalyzer(String mex){
 
       default:
         Serial.println("Something's wrong, i can feel it");
-        mex = String("paperella gay");
-        Serial.println(String(mex));
+        Serial.println(mex);
+
+        //default block everything
   
       break;
     }
@@ -181,6 +187,21 @@ void serialAnalyzer(String mex){
 
   
 }
+
+
+
+void serialByte(int bytemess){
+  if(bytemess){
+    if(bytemess & 128){
+
+    }
+  }
+  else{
+    Serial.println("Fermati");
+  }
+
+}
+
 
 
 

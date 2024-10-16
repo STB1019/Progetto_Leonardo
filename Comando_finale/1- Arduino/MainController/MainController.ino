@@ -15,6 +15,8 @@ Stepper Stepper4(stepsPerRevolution, dir_step4,step4);  */
 
 String stringa = "aaaaa";
 String stringaold = "";
+//int lenght = 10;
+//char mess[lenght] = "";
 
 void setup(){
 
@@ -41,6 +43,9 @@ void setup(){
   //serialCommCloser();
   delay(1000);
   serialCommOpener();
+
+  
+
   
     
 }
@@ -51,8 +56,10 @@ void loop(){
   
     
     stringa = Serial.readStringUntil('\n');
-      if(stringa != stringaold){
+
+      if(String(stringa) != String(stringaold)){
         stringaold = stringa;
+        //stringaold.toCharArray(mess, lenght);
         serialAnalyzer(stringa);
         
       }
@@ -77,15 +84,8 @@ void serialWriteTest(){
 }
 
 void serialReadTest(String stringa){
-
-
-
-
-
-
-  
-  
-    if(stringa =="12345678"){
+  Serial.println(stringa+" entrato in serialReadTest");
+  if(stringa =="12345678"){
 
     serialCommCloser();
     
