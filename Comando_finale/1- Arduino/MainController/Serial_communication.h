@@ -17,6 +17,7 @@ void serialCommCloser(){
 
   Serial.println("Closing all serial communications");
   //serial_movement.end();
+  stop_movement();
   //serial_sonar.end();
 
   Serial.println("All serial ports closed");
