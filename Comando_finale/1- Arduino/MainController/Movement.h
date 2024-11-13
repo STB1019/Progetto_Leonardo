@@ -40,27 +40,31 @@ void default_movement(){
 
 
 void forward_mov(){
+  
   move(dir_dc1, false);
   move(dir_dc2, false);
   move(dir_dc3, true);
   move(dir_dc4, true);
+  
 }
 
 void back_mov(){
+  
   move(dir_dc1, true);
   move(dir_dc2, true);
   move(dir_dc3, false);
   move(dir_dc4, false);
-
+  
 }
 
 void left_mov(){
+  
   
   move(dir_dc1, false);
   move(dir_dc2, false);
   move(dir_dc3, false);
   move(dir_dc4, false);
-
+  
 }
 
 void right_mov(){

@@ -49,18 +49,18 @@ void loop(){
 
   
 
-  
+  stringa = serialListener();
     
-    stringa = Serial.readStringUntil('\n');
+    //stringa = Serial.readStringUntil('\n');
 
-      if(String(stringa) != String(stringaold)){
+      if(String(stringa) != "no new messages"){
         stringaold = stringa;
         //stringaold.toCharArray(mess, lenght);
-        serialAnalyzer(stringFormatter(stringa));
+        
         
       }
   
-
+  serialAnalyzer(stringFormatter(stringaold));
 
 
 
