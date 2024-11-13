@@ -47,7 +47,7 @@ void setup(){
 }
 void loop(){
 
-  
+  //TODO:  fixing the loop, leonardo stops for a moment between cycles
 
   stringa = serialListener();
     
@@ -64,7 +64,7 @@ void loop(){
 
 
 
-delay(1000);
+//delay(1000);
   
 }
 
