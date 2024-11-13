@@ -127,7 +127,13 @@ void serialAnalyzer(String mex){
   if(mex.charAt(0) == 'P'){
     set_pwm(int(mex[3])*100 + int(mex[4])*10 + int(mex[5]));
   }
-  
+
+  else if(mex.charAt(0) == 'O'){
+    stop_movement();
+  }
+  else if(mex.charAt(0) == 'I'){
+    default_movement();
+  }
 
   else if(mex.charAt(0) == 'S'){
     
