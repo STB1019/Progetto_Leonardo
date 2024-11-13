@@ -1,4 +1,8 @@
 //to enable exceptions you have to manually configure the IDE
+#include "Movement.h"
+
+String default_mex = "abcd";
+int timer_micro = 500;
 
 void serialCommOpener(){
     
@@ -38,6 +42,8 @@ String serialListenerEXC(){
 
 void serialWriter(String stringa){
   
+
+  
   if(Serial.availableForWrite()){
       Serial.println(stringa);
   }
@@ -59,8 +65,8 @@ String serialListener(){
 
 String stringFormatter(String stringa){
 
-  int len = stringa.length()-1; //cropping the \n character
-  String string_formatted = "";
+  int len = stringa.length(); 
+  char string_formatted[8] = {'a', 'a','a','a','a','a','a','a'};
   for(int i = 0; i<8; i++){
     string_formatted[7-i]=stringa[len-i-1];
   } 
@@ -96,6 +102,8 @@ S3U  ->  moving back axis up
 S3D  ->  moving back axis down
 S4U  ->  moving balance axis up
 S4D  ->  moving balance axis down
+
+PWM  -> setting pwm to values between 0 and 255
 */
 
 void serialAnalyzer(String mex){
@@ -105,7 +113,7 @@ void serialAnalyzer(String mex){
   //char mex[max];
   //mex_s.toCharArray(mex, max);
 
-  if(mex =="12345678"){
+  if(mex =="STACCCAH"){
 
     serialCommCloser();
     
@@ -115,7 +123,11 @@ void serialAnalyzer(String mex){
   //int timer = int(mex[3])*1000 + int(mex[4])*100 + int(mex[5])*10 + int(mex[6]);
   //delay(timer);
   //check if i need to move a stepper motor
-  if(mex.charAt(0) == 'S'){
+  if(mex.charAt(0) == 'P'){
+    set_pwm(int(mex[3])*100 + int(mex[4])*10 + int(mex[5]));
+  }
+
+  else if(mex.charAt(0) == 'S'){
     
     bool bool_dir = false;
 
@@ -125,61 +137,82 @@ void serialAnalyzer(String mex){
     
     switch(mex.charAt(1)){
       case 1:
+
           //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
-          //moveAxis(,,bool_dir,);
-          
+          moveAxis(dir_dc1, step1, bool_dir, timer_micro);
+          delay(500);
+
       break;
 
       case 2:
+
           //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
-          //moveAxis(,,bool_dir,);
+            moveAxis(dir_dc2, step2, bool_dir, timer_micro);
+            delay(500);  
+  
       break;
 
       case 3:
+
           //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
-          //moveAxis(,,bool_dir,);
+          moveAxis(dir_dc3, step3, bool_dir, timer_micro);
+          delay(500);  
+
       break;
 
       case 4:
+
           //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
-          //moveAxis(,,bool_dir,);
+            moveAxis(dir_dc4, step4, bool_dir, timer_micro);
+            delay(500); 
+
       break;
 
       default:
-        Serial.println("Something's wrong, i can feel it");
+
+        serialWriter("Something's wrong, i can feel it");
   
       break;
     }
   }
   else{
-    Serial.println(mex+" entrato in gestione dc");
+    serialWriter(mex+" entrato in gestione dc");
     switch(mex.charAt(0)){
       case 'F':
-          //forward();
 
+          forward_mov();
           serialWriter("avanti");
+
       break;
 
       case 'B':
-          //back();
+
+          back_mov();
           serialWriter("indietro");
+
       break;
 
       case 'L':
-          //left();
+
+          left_mov();
           serialWriter("sinistra");
+
       break;
 
       case 'R':
-          //right();
+
+          right_mov();
           serialWriter("destra");
+
       break;
 
       default:
-        Serial.println("Something's wrong, i can feel it");
-        Serial.println(mex);
+      //default block everything
+        serialWriter("Something's wrong, i can feel it");
+        serialWriter(mex);
+        stop_movement();
 
-        //default block everything
+        
   
       break;
     }
@@ -189,7 +222,7 @@ void serialAnalyzer(String mex){
 }
 
 
-
+//managing movement with bitwise operations
 void serialByte(int bytemess){
   if(bytemess){
     if(bytemess & 128){
@@ -222,6 +255,142 @@ void serialWriterEXC(String sonar_values){
   
 }
 */
+
+
+/*
+Function to analyze in which direction moving and for how long 
+
+format of the messages: MMM
+
+MMM : characters for movement
+
+
+    ###   DC DIRECTION    ###
+
+FWD  ->  Leonardo moving forward
+BCK  ->  Leonardo moving backwards
+LFT  ->  Leonardo turning  left
+RGH  ->  Leonardo turning right
+
+    ###   STEPPER DIRECTION   ###
+
+
+S1U  ->  moving front axis up
+S1D ->  moving front axis down
+S2U  ->  moving middle axis up
+S2D  ->  moving middle axis down
+S3U  ->  moving back axis up
+S3D  ->  moving back axis down
+S4U  ->  moving balance axis up
+S4D  ->  moving balance axis down
+
+PWM  -> setting pwm to values between 0 and 255
+*/
+
+void serialAnalyzer_FSM(String mex){
+
+  Serial.println(mex+" entrato in serialAnalyzer_FSM");
+
+  if(mex =="1149"){
+
+    serialCommCloser();
+    
+  }
+
+  if(mex.charAt(0) == 'P'){
+    set_pwm(int(mex[3])*100 + int(mex[4])*10 + int(mex[5]));
+  }
+
+  else if(mex.charAt(0) == 'S'){
+    
+    bool bool_dir = false;
+
+    if(mex.charAt(2) == 'U'){
+      bool_dir = true;
+    }
+    
+    switch(mex.charAt(1)){
+      case 1:
+          //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
+          moveAxis(dir_dc1, step1, bool_dir, timer_micro);
+          delay(500); 
+          
+      break;
+
+      case 2:
+          //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
+          
+            moveAxis(dir_dc2, step2, bool_dir, timer_micro);
+            delay(500);
+
+      break;
+
+      case 3:
+          //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
+          
+          moveAxis(dir_dc3, step3, bool_dir, timer_micro);
+          delay(500);
+
+      break;
+
+      case 4:
+          //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
+            moveAxis(dir_dc4, step4, bool_dir, timer_micro);
+            delay(500); 
+
+      break;
+
+      default:
+
+        serialWriter("Something's wrong, i can feel it");
+  
+      break;
+    }
+  }
+  else{
+    serialWriter(mex+" entrato in gestione dc");
+    switch(mex.charAt(0)){
+      case 'F':
+
+          forward_mov();
+          serialWriter("avanti");
+
+      break;
+
+      case 'B':
+
+          back_mov();
+          serialWriter("indietro");
+
+      break;
+
+      case 'L':
+
+          left_mov();
+          serialWriter("sinistra");
+
+      break;
+
+      case 'R':
+
+          right_mov();
+          serialWriter("destra");
+
+      break;
+
+      default:
+
+        serialWriter("Something's wrong, i can feel it");
+        serialWriter(mex);
+
+        stop_movement();
+  
+      break;
+    }
+  } 
+
+  
+}
 
 
 

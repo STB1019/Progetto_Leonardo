@@ -18,7 +18,9 @@
 
 #define stepsPerRevolution 200 
 
-#define pwm_start_value 0
+
+
+
 
 
 

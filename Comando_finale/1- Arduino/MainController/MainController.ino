@@ -1,9 +1,9 @@
 #include "Serial_communication.h"
-#include "PIN_OUT_FINAL.h"
+//#include "PIN_OUT_FINAL.h"
 //#include "Stepper2.h"
 //#include "Sonar_Completo_Leonardo.h"
-#include "SoftwareSerial.h"
-#include "Movement.h"
+//#include "SoftwareSerial.h"
+//#include "Movement.h"
 
 
 /*
@@ -43,10 +43,6 @@ void setup(){
   //serialCommCloser();
   delay(1000);
   serialCommOpener();
-
-  
-
-  
     
 }
 void loop(){
@@ -60,7 +56,7 @@ void loop(){
       if(String(stringa) != String(stringaold)){
         stringaold = stringa;
         //stringaold.toCharArray(mess, lenght);
-        serialAnalyzer(stringa);
+        serialAnalyzer(stringFormatter(stringa));
         
       }
   
@@ -99,7 +95,7 @@ void serialReadTest(String stringa){
 
 void dummyMovement2(){
   int delay_time = 300;
-  forward();
+  forward_mov();
 
   
   //default_movement();
@@ -110,7 +106,7 @@ void dummyMovement2(){
   delay(delay_time);
 
   delay(1000);
-  back();
+  back_mov();
   
   //default_movement();
   set_pwm(200);
@@ -120,22 +116,23 @@ void dummyMovement2(){
   delay(delay_time);
 
   delay(1000);
-/*
-  left();
+
+  left_mov();
   
   //default_movement();
   delay(delay_time);
   stop_movement();
   delay(delay_time);
 
-  right();
+  right_mov();
 
   //default_movement();
   delay(delay_time);
   stop_movement();
   delay(delay_time);
-*/
+
 }
+
 
 //TO BE TESTED THE MOTOR MAPPING
 void dummyMovement(){
@@ -145,7 +142,7 @@ void dummyMovement(){
   move(dir_dc4, HIGH);
   analogWrite(6, 200);
   //default_movement();
-/*
+
   delay(2000);
   stop_movement();
   delay(2000);
@@ -163,14 +160,14 @@ void dummyMovement(){
   stop_movement();
   delay(2000);
   
-
-
-*/
 }
 
 
+
+
+
 void dummyStepper(){
-  int timer_micro = 500;
+  
   moveAxis(dir_dc1, step1, true, timer_micro);
   delay(500);
   

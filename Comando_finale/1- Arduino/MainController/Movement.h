@@ -39,14 +39,14 @@ void default_movement(){
 }
 
 
-void forward(){
+void forward_mov(){
   move(dir_dc1, false);
   move(dir_dc2, false);
   move(dir_dc3, true);
   move(dir_dc4, true);
 }
 
-void back(){
+void back_mov(){
   move(dir_dc1, true);
   move(dir_dc2, true);
   move(dir_dc3, false);
@@ -54,7 +54,7 @@ void back(){
 
 }
 
-void left(){
+void left_mov(){
   
   move(dir_dc1, false);
   move(dir_dc2, false);
@@ -63,7 +63,7 @@ void left(){
 
 }
 
-void right(){
+void right_mov(){
   
   move(dir_dc1, true);
   move(dir_dc2, true);
