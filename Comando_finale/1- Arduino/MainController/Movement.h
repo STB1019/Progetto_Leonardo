@@ -1,10 +1,10 @@
 #include "PIN_OUT_FINAL.h"
 
-
-void move(int motor, bool direction){
+/*
+void move(int motor, String direction){
   digitalWrite(motor, direction);
 }
-
+*/
 //automatic setter of the pwm value in decreasing and increasing pwm value modes
 void set_pwm(int pwm_v){
   int pwm_value = analogRead(PWM_PIN);
@@ -41,38 +41,38 @@ void default_movement(){
 
 void forward_mov(){
   
-  move(dir_dc1, false);
-  move(dir_dc2, false);
-  move(dir_dc3, true);
-  move(dir_dc4, true);
+  digitalWrite(dir_dc1, LOW); 
+  digitalWrite(dir_dc2, LOW);
+  digitalWrite(dir_dc3, HIGH);
+  digitalWrite(dir_dc4, HIGH);
   
 }
 
 void back_mov(){
   
-  move(dir_dc1, true);
-  move(dir_dc2, true);
-  move(dir_dc3, false);
-  move(dir_dc4, false);
+  digitalWrite(dir_dc1, HIGH);
+  digitalWrite(dir_dc2, HIGH);
+  digitalWrite(dir_dc3, LOW);
+  digitalWrite(dir_dc4, LOW);
   
 }
 
 void left_mov(){
   
   
-  move(dir_dc1, false);
-  move(dir_dc2, false);
-  move(dir_dc3, false);
-  move(dir_dc4, false);
+  digitalWrite(dir_dc1, LOW);
+  digitalWrite(dir_dc2, LOW);
+  digitalWrite(dir_dc3, LOW);
+  digitalWrite(dir_dc4, LOW);
   
 }
 
 void right_mov(){
   
-  move(dir_dc1, true);
-  move(dir_dc2, true);
-  move(dir_dc3, true);
-  move(dir_dc4, true);
+  digitalWrite(dir_dc1, HIGH);
+  digitalWrite(dir_dc2, HIGH);
+  digitalWrite(dir_dc3, HIGH);
+  digitalWrite(dir_dc4, HIGH);
   
 }
 

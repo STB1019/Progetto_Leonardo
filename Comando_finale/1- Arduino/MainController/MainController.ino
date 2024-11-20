@@ -135,11 +135,12 @@ void dummyMovement2(){
 
 
 //TO BE TESTED THE MOTOR MAPPING
+/*
 void dummyMovement(){
-  move(dir_dc1, LOW);
-  move(dir_dc2, LOW);
-  move(dir_dc3, HIGH);
-  move(dir_dc4, HIGH);
+  digitalWrite(dir_dc1, LOW);
+  digitalWrite(dir_dc2, LOW);
+  digitalWrite(dir_dc3, HIGH);
+  digitalWrite(dir_dc4, HIGH);
   analogWrite(6, 200);
   //default_movement();
 
@@ -162,7 +163,7 @@ void dummyMovement(){
   
 }
 
-
+*/
 
 
 
