@@ -49,18 +49,18 @@ void loop(){
 
   //TODO:  fixing the loop, leonardo stops for a moment between cycles
 
-  stringa = serialListener();
+  stringa = Serial.readStringUntil('\n');
     
     //stringa = Serial.readStringUntil('\n');
 
-      if(String(stringa) != "no new messages"){
+      if(stringa != stringaold){
         stringaold = stringa;
         //stringaold.toCharArray(mess, lenght);
         
         
       }
   
-  serialAnalyzer(stringFormatter(stringaold));
+  serialAnalyzer(stringaold);
 
 
 
