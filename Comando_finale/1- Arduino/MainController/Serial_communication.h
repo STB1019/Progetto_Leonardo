@@ -107,6 +107,8 @@ S4D  ->  moving balance axis down
 PWM  -> setting pwm to values between 0 and 255
 */
 
+bool bool_dir = false;
+
 void serialAnalyzer(String mex){
 
   Serial.println(mex+" entrato in serialAnalyzer");
@@ -137,7 +139,7 @@ void serialAnalyzer(String mex){
 
   else if(mex.charAt(0) == 'S'){
     
-    bool bool_dir = false;
+    bool_dir = false;
 
     if(mex.charAt(2) == 'U'){
       bool_dir = true;
@@ -231,16 +233,119 @@ void serialAnalyzer(String mex){
 }
 
 
-//managing movement with bitwise operations
-void serialByte(int bytemess){
-  if(bytemess){
-    if(bytemess & 128){
+/*
+serialMovement, but implementing a bitwise logic
 
-    }
+byte format: ssddxxxx
+
+ss: couple bit for selection of the movement
+
+00:   dc movement
+01:   stepper movement up
+10:   stepper movement down
+11:   stop
+
+dd: couple bits for direction 
+
+dc movement mode: 
+
+00:   forward
+01:   right
+10:   left
+11:   backward
+
+stepper movement mode: 
+
+00:   move stepper motor 1
+01:   move stepper motor 2
+10:   move stepper motor 3
+11:   move stepper motor 4
+
+*/
+
+bool movement_dc = false;
+int movement_selector = 0;
+void serialBinaryMove(int movement){
+
+  
+  movement = movement && -15;
+  if(movement && 192){
+    stop_movement();
+    serialWriter("Leonardo stopped moving");
   }
   else{
-    Serial.println("Fermati");
+      if(movement && 0){
+        movement_dc = true;
+      }
+      else{
+          if(movement && 64){
+              bool_dir = true;
+          }
+          else{
+              bool_dir = false;
+          }
+      }
   }
+
+  movement_selector = (movement && 48);
+
+  switch(movement_selector){
+  
+    case 0:
+      if(movement_dc){
+        forward_mov();
+        serialWriter("avanti");
+        }
+
+      else{
+        moveAxis(dir_dc1, step1, bool_dir, timer_micro);
+        delay(500);
+      }
+      break;
+
+    case 16:
+      if(movement_dc){
+        right_mov();
+        serialWriter("avanti");
+      }
+
+      else{
+        moveAxis(dir_dc2, step2, bool_dir, timer_micro);
+        delay(500);
+      }
+    break;
+
+    case 32:
+    if(movement_dc){
+      left_mov();
+      serialWriter("avanti");
+    }
+
+    else{
+      moveAxis(dir_dc3, step3, bool_dir, timer_micro);
+      delay(500);
+    }
+    break;
+
+    case 48: 
+    if(movement_dc){
+      back_mov();
+      serialWriter("avanti");
+    }
+
+    else{
+      moveAxis(dir_dc4, step4, bool_dir, timer_micro);
+      delay(500);
+    }
+    break;
+      
+    default:  
+    serialWriter("Something's wrong, i can feel it");
+    stop_movement();
+
+    break;
+  }
+  movement_dc = false;
 
 }
 
