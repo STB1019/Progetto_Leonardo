@@ -50,7 +50,24 @@ void loop(){
   //TODO:  fixing the loop, leonardo stops for a moment between cycles
 
   stringa = Serial.readStringUntil('\n');
+    while(stringa != "STACCAH"){
+      if(stringa = "RIATTACCAH"){
+        serialCommOpener();
+      }
+
+      if(stringa != stringaold){
+        stringaold = stringa;
+        //stringaold.toCharArray(mess, lenght);
+        
+        
+      }
     
+      serialAnalyzer(stringaold);
+      stringa = Serial.readStringUntil('\n');
+      
+    }
+
+    /*
     //stringa = Serial.readStringUntil('\n');
 
       if(stringa != stringaold){
@@ -61,7 +78,7 @@ void loop(){
       }
   
   serialAnalyzer(stringaold);
-
+*/
 
 
 //delay(1000);
