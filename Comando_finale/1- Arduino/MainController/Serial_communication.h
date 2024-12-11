@@ -107,7 +107,7 @@ S4D  ->  moving balance axis down
 PWM  -> setting pwm to values between 0 and 255
 */
 
-<<<<<<< HEAD
+
 void serialAnalyzer_(String mex){
 
   Serial.println(mex+" entrato in serialAnalyzer");
@@ -121,9 +121,9 @@ void serialAnalyzer_(String mex){
     
   }
 }
-=======
+
 bool bool_dir = false;
->>>>>>> 7524a7e9ea1eb630ea55b5c3cb756314aa4ac3d4
+
 
 void serialAnalyzer(String mex){
 
