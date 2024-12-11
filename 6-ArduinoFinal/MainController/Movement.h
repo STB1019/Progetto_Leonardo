@@ -1,3 +1,4 @@
+#include "Arduino.h"
 #include "PIN_OUT_FINAL.h"
 
 /*
@@ -10,7 +11,7 @@ void set_pwm(int pwm_v){
   int pwm_value = analogRead(PWM_PIN);
   if(pwm_v > pwm_value){
     for(int i=pwm_value; i<=pwm_v; i++){
-      delay(50);
+      delay(1);
       analogWrite(PWM_PIN, i);
 
     }
@@ -32,16 +33,16 @@ void set_pwm(int pwm_v){
 
 //method to stop the movement of the DC mothors
 void stop_movement(){
-  set_pwm(0);
+  analogWrite(PWM_PIN, 0);
 }
 
 //default value of the PWM signal controlling the DC motors
 void default_movement(){
-  set_pwm(200);
+  analogWrite(PWM_PIN, 255);
 }
 
 
-void forward_mov(){
+void left_mov(){
   
   digitalWrite(dir_dc1, LOW); 
   digitalWrite(dir_dc2, LOW);
@@ -50,7 +51,7 @@ void forward_mov(){
   
 }
 
-void back_mov(){
+void right_mov(){
   
   digitalWrite(dir_dc1, HIGH);
   digitalWrite(dir_dc2, HIGH);
@@ -59,7 +60,7 @@ void back_mov(){
   
 }
 
-void left_mov(){
+void forward_mov(){
   
   
   digitalWrite(dir_dc1, LOW);
@@ -69,7 +70,7 @@ void left_mov(){
   
 }
 
-void right_mov(){
+void back_mov(){
   
   digitalWrite(dir_dc1, HIGH);
   digitalWrite(dir_dc2, HIGH);

@@ -18,7 +18,7 @@
 
 #define stepsPerRevolution 200 
 
-bool nonewmex = true;
+
 
 
 

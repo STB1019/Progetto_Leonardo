@@ -16,8 +16,8 @@ Stepper Stepper4(stepsPerRevolution, dir_step4,step4);  */
 String stringa = "aaaaa";
 String stringaold = "";
 String stringaoldold = "";
-String msg = "S";
-char state='S';
+String mex = "H";
+char state='H';
 uint8_t speed=255;
 //int lenght = 10;
 //char mess[lenght] = "";
@@ -51,43 +51,189 @@ void setup() {
   serialWriter("Leonardo ready");
 }
 
+/*
+    ###   DC DIRECTION    ###
+
+F   ->  Leonardo moving forward
+B   ->  Leonardo moving backwards
+L   ->  Leonardo turning  left
+R   ->  Leonardo turning right
+
+    ###   STEPPER DIRECTION   ###
+
+S1U  ->  moving front axis up
+S1D  ->  moving front axis down
+S2U  ->  moving middle axis up
+S2D  ->  moving middle axis down
+S3U  ->  moving back axis up
+S3D  ->  moving back axis down
+S4U  ->  moving balance axis up
+S4D  ->  moving balance axis down
+
+PKKK  -> setting pwm to values between 0 and 255, managed in KKK
+
+O     ->  pwm default value 0 
+I     ->  pwm default value 255
+*/
+
+
 void loop() {
 
-  if (millis() - lastmillis > timeout) state = 'S';
+  if (millis() - lastmillis > timeout) state = 'H';
 
-  if (Serial.available() > 0) {
-    msg = Serial.readString();
+  if (Serial.available()) {
+    mex = Serial.readString();
     Serial.print("recived:");
-    Serial.println(msg);
+    Serial.println(mex);
     lastmillis = millis();
-
+    /*
     state = msg.charAt(0);
+    //serialAnalyzer(msg);
     //speed= seconda parte della stringa toInt
-  }
-  
 
-  switch (state) {
+    switch (state) {
     case 'F':
       forward_mov();
-      analogWrite(PWM_PIN, speed);
+      
+      //analogWrite(PWM_PIN, speed);
       break;
     case 'R':
       right_mov();
-      analogWrite(PWM_PIN, speed);
+      //analogWrite(PWM_PIN, speed);
       break;
     case 'L':
       left_mov();
-      analogWrite(PWM_PIN, speed);
+      //analogWrite(PWM_PIN, speed);
       break;
     case 'B':
       back_mov();
-      analogWrite(PWM_PIN, speed);
+      //analogWrite(PWM_PIN, speed);
       break;
     case 'S':
       analogWrite(PWM_PIN, 0);
       break;
+    case 'X':
+      analogWrite(PWM_PIN, 255);
+      break;
   }
-  delay(10);
+  */
+
+  if(mex =="STACCCAH"){
+
+    serialCommCloser();
+    
+  }
+  
+  if(mex.charAt(0) == 'P'){
+    set_pwm(int(mex[1])*100 + int(mex[2])*10 + int(mex[3]));
+  }
+
+  else if(mex.charAt(0) == 'O'){
+    stop_movement();
+  }
+  else if(mex.charAt(0) == 'I'){
+    default_movement();
+  }
+
+  else if(mex.charAt(0) == 'S'){
+    
+    bool_dir = false;
+
+    if(mex.charAt(2) == 'U'){
+      bool_dir = true;
+    }
+    
+    switch(mex.charAt(1)){
+      case 1:
+
+          //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
+          moveAxis(dir_dc1, step1, bool_dir, timer_micro);
+          delay(500);
+
+      break;
+
+      case 2:
+
+          //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
+            moveAxis(dir_dc2, step2, bool_dir, timer_micro);
+            delay(500);  
+  
+      break;
+
+      case 3:
+
+          //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
+          moveAxis(dir_dc3, step3, bool_dir, timer_micro);
+          delay(500);  
+
+      break;
+
+      case 4:
+
+          //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
+            moveAxis(dir_dc4, step4, bool_dir, timer_micro);
+            delay(500); 
+
+      break;
+
+      default:
+
+        serialWriter("Something's wrong, i can feel it");
+        stop_movement();
+  
+      break;
+    }
+  }
+  else{
+    serialWriter(mex+" entrato in gestione dc");
+    switch(mex.charAt(0)){
+      case 'F':
+
+          
+          serialWriter("avanti");
+         forward_mov();
+
+      break;
+
+      case 'B':
+
+          back_mov();
+          serialWriter("indietro");
+
+      break;
+
+      case 'L':
+
+          left_mov();
+          serialWriter("sinistra");
+
+      break;
+
+      case 'R':
+
+          right_mov();
+          serialWriter("destra");
+
+      break;
+
+      default:
+      //default block everything
+        serialWriter("Something's wrong, i can feel it");
+        serialWriter(mex);
+        stop_movement();
+
+        
+  
+      break;
+    }
+  }
+
+
+  }
+  
+
+  
+  
   //TODO:  fixing the loop, leonardo stops for a moment between cycles
 
   /* stringa = Serial.readStringUntil('\n');
