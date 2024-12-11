@@ -137,7 +137,7 @@ void serialAnalyzer(String mex){
     serialCommCloser();
     
   }
-
+  
   //retrieving how much time to move. time between 0 and 9999 milliseconds
   //int timer = int(mex[3])*1000 + int(mex[4])*100 + int(mex[5])*10 + int(mex[6]);
   //delay(timer);
@@ -207,8 +207,9 @@ void serialAnalyzer(String mex){
     switch(mex.charAt(0)){
       case 'F':
 
-          forward_mov();
+          
           serialWriter("avanti");
+         forward_mov();
 
       break;
 

@@ -15,12 +15,17 @@ Stepper Stepper4(stepsPerRevolution, dir_step4,step4);  */
 
 String stringa = "aaaaa";
 String stringaold = "";
+String stringaoldold = "";
+String msg = "S";
+char state='S';
+uint8_t speed=255;
 //int lenght = 10;
 //char mess[lenght] = "";
+unsigned long timeout=5000;
+unsigned long lastmillis=0;
+void setup() {
 
-void setup(){
 
-  
   pinMode(dir_dc1, OUTPUT);
   pinMode(dir_dc2, OUTPUT);
   pinMode(dir_dc3, OUTPUT);
@@ -31,41 +36,84 @@ void setup(){
   pinMode(dir_step2, OUTPUT);
   pinMode(dir_step3, OUTPUT);
   pinMode(dir_step4, OUTPUT);
-  
+
   pinMode(step1, OUTPUT);
   pinMode(step2, OUTPUT);
   pinMode(step3, OUTPUT);
   pinMode(step4, OUTPUT);
-  
+
   //security measure
   analogWrite(PWM_PIN, 0);
 
   //serialCommCloser();
   delay(1000);
   serialCommOpener();
-    
+  serialWriter("Leonardo ready");
 }
-void loop(){
 
+void loop() {
+
+  if (millis() - lastmillis > timeout) state = 'S';
+
+  if (Serial.available() > 0) {
+    msg = Serial.readString();
+    Serial.print("recived:");
+    Serial.println(msg);
+    lastmillis = millis();
+
+    state = msg.charAt(0);
+    //speed= seconda parte della stringa toInt
+  }
+  
+
+  switch (state) {
+    case 'F':
+      forward_mov();
+      analogWrite(PWM_PIN, speed);
+      break;
+    case 'R':
+      right_mov();
+      analogWrite(PWM_PIN, speed);
+      break;
+    case 'L':
+      left_mov();
+      analogWrite(PWM_PIN, speed);
+      break;
+    case 'B':
+      back_mov();
+      analogWrite(PWM_PIN, speed);
+      break;
+    case 'S':
+      analogWrite(PWM_PIN, 0);
+      break;
+  }
+  delay(10);
   //TODO:  fixing the loop, leonardo stops for a moment between cycles
 
-  stringa = Serial.readStringUntil('\n');
-    while(stringa != "STACCAH"){
-      if(stringa = "RIATTACCAH"){
-        serialCommOpener();
-      }
+  /* stringa = Serial.readStringUntil('\n');
+
+  //
+ 
+    while(!stringa.equals("STACCAH")){
+      
 
       if(stringa != stringaold){
-        stringaold = stringa;
+          stringaold = stringa;
+
         //stringaold.toCharArray(mess, lenght);
         
-        
+        serialAnalyzer(stringaold);
       }
-    
-      serialAnalyzer(stringaold);
+      
+        serialAnalyzer(stringaold);
+      
+      
+      
       stringa = Serial.readStringUntil('\n');
       
+
     }
+    serialCommCloser();
 
     /*
     //stringa = Serial.readStringUntil('\n');
@@ -79,42 +127,35 @@ void loop(){
   
   serialAnalyzer(stringaold);
 */
-
-
-//delay(1000);
-  
 }
 
-void serialWriteTest(){
-  
+void serialWriteTest() {
+
   serialCommOpener();
-  for(int i=0; i<10; i++){
+  for (int i = 0; i < 10; i++) {
     serialWriter("ciao");
     delay(100);
   }
   serialCommCloser();
-  
 }
 
-void serialReadTest(String stringa){
-  Serial.println(stringa+" entrato in serialReadTest");
-  if(stringa =="12345678"){
+void serialReadTest(String stringa) {
+  Serial.println(stringa + " entrato in serialReadTest");
+  if (stringa == "12345678") {
 
     serialCommCloser();
-    
   }
   serialAnalyzer(stringa);
-    delay(1000);
-  
+  delay(1000);
 }
 
 
 
-void dummyMovement2(){
+void dummyMovement2() {
   int delay_time = 300;
   forward_mov();
 
-  
+
   //default_movement();
   set_pwm(200);
   delay(delay_time);
@@ -124,7 +165,7 @@ void dummyMovement2(){
 
   delay(1000);
   back_mov();
-  
+
   //default_movement();
   set_pwm(200);
   delay(delay_time);
@@ -135,7 +176,7 @@ void dummyMovement2(){
   delay(1000);
 
   left_mov();
-  
+
   //default_movement();
   delay(delay_time);
   stop_movement();
@@ -147,7 +188,6 @@ void dummyMovement2(){
   delay(delay_time);
   stop_movement();
   delay(delay_time);
-
 }
 
 
@@ -184,29 +224,29 @@ void dummyMovement(){
 
 
 
-void dummyStepper(){
-  
+void dummyStepper() {
+
   moveAxis(dir_dc1, step1, true, timer_micro);
   delay(500);
-  
+
   moveAxis(dir_dc1, step1, false, timer_micro);
   delay(500);
-  
+
   moveAxis(dir_dc2, step2, true, timer_micro);
   delay(500);
-  
+
   moveAxis(dir_dc2, step2, false, timer_micro);
   delay(500);
-  
+
   moveAxis(dir_dc3, step3, true, timer_micro);
   delay(500);
-  
+
   moveAxis(dir_dc3, step3, false, timer_micro);
   delay(500);
-  
+
   moveAxis(dir_dc4, step4, true, timer_micro);
-  delay(500); 
-  
+  delay(500);
+
   moveAxis(dir_dc4, step4, false, timer_micro);
   delay(500);
 }
