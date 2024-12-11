@@ -85,7 +85,7 @@ void loop() {
     mex = Serial.readString();
     Serial.print("recived:");
     Serial.println(mex);
-    lastmillis = millis();
+    //lastmillis = millis();
     /*
     state = msg.charAt(0);
     //serialAnalyzer(msg);
@@ -129,10 +129,12 @@ void loop() {
   }
 
   else if(mex.charAt(0) == 'O'){
+    serialWriter("not moving");
     stop_movement();
   }
   else if(mex.charAt(0) == 'I'){
     default_movement();
+    serialWriter("moving");
   }
 
   else if(mex.charAt(0) == 'S'){

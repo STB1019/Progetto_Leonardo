@@ -44,6 +44,7 @@ void default_movement(){
 
 void left_mov(){
   
+  
   digitalWrite(dir_dc1, LOW); 
   digitalWrite(dir_dc2, LOW);
   digitalWrite(dir_dc3, HIGH);
@@ -61,7 +62,6 @@ void right_mov(){
 }
 
 void forward_mov(){
-  
   
   digitalWrite(dir_dc1, LOW);
   digitalWrite(dir_dc2, LOW);
