@@ -1,0 +1,30 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "7e423b37-f2ea-4087-992f-e3dc2e2ab60c")
+	(paper "A4")
+	(lib_symbols)
+	(hierarchical_label "INGRESSO"
+		(shape input)
+		(at 83.82 68.58 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "17120d3e-1bad-4131-99b3-b52bd921e694")
+	)
+	(hierarchical_label "USCITA"
+		(shape input)
+		(at 160.02 69.85 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "178309c5-2638-4a2b-b1a2-eef27de49eb2")
+	)
+)

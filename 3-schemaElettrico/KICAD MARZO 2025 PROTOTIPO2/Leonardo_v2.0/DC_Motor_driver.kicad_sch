@@ -1,0 +1,162 @@
+(kicad_sch
+	(version 20250114)
+	(generator "eeschema")
+	(generator_version "9.0")
+	(uuid "bf955136-0f68-46a3-a0ed-cb5925809894")
+	(paper "A4")
+	(lib_symbols)
+	(hierarchical_label "M2_PWM"
+		(shape output)
+		(at 195.58 97.79 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "0890814c-4dda-4975-a4b9-16007bb22cf8")
+	)
+	(hierarchical_label "M1_OUT_C"
+		(shape output)
+		(at 194.31 59.69 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "22eed822-60a3-49ad-847a-bf70be5a9d46")
+	)
+	(hierarchical_label "IN_3"
+		(shape input)
+		(at 78.74 60.96 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "2684c576-6844-4d47-be55-8ece59fb209b")
+	)
+	(hierarchical_label "M2_OUT_D"
+		(shape output)
+		(at 195.58 121.92 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "4b2779ed-612a-4a1b-9940-8c10e5443bd5")
+	)
+	(hierarchical_label "M1_OUT_B"
+		(shape output)
+		(at 194.31 53.34 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "6de24e2d-22c1-4aae-8fec-d86fd109c34d")
+	)
+	(hierarchical_label "IN_1"
+		(shape input)
+		(at 78.74 48.26 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "7fe62cf6-0b6c-4f5d-8bb6-58c37c136c97")
+	)
+	(hierarchical_label "M1_OUT_D"
+		(shape output)
+		(at 194.31 66.04 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "9d4ac2f4-b350-4bee-bf1c-90339884a450")
+	)
+	(hierarchical_label "M1_OUT_A"
+		(shape output)
+		(at 194.31 46.99 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "a3a3c0f4-baae-4729-b766-e2e4fe239796")
+	)
+	(hierarchical_label "M2_OUT_B"
+		(shape output)
+		(at 195.58 109.22 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "bbc86f74-befd-4390-bfcc-b7e972f3664c")
+	)
+	(hierarchical_label "IN_2"
+		(shape input)
+		(at 78.74 54.61 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "bbd757b5-c284-41b4-9c81-3931e21600e9")
+	)
+	(hierarchical_label "M2_OUT_C"
+		(shape output)
+		(at 195.58 115.57 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "c8e5ca1b-4be6-416e-9c35-4d2cc7eb6dfb")
+	)
+	(hierarchical_label "M1_PWM"
+		(shape output)
+		(at 194.31 41.91 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "d928932c-1ad5-4c26-8447-649d15cd0607")
+	)
+	(hierarchical_label "PWM_EN"
+		(shape input)
+		(at 78.74 41.91 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "f469fc94-4acc-4afe-9619-8b66f74346a8")
+	)
+	(hierarchical_label "M2_OUT_A"
+		(shape output)
+		(at 195.58 102.87 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "ff3cc171-2239-4f9e-b3a2-6d061bd8db17")
+	)
+)
