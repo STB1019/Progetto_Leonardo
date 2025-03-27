@@ -5,26 +5,92 @@
 	(uuid "7e423b37-f2ea-4087-992f-e3dc2e2ab60c")
 	(paper "A4")
 	(lib_symbols)
-	(hierarchical_label "INGRESSO"
-		(shape input)
-		(at 83.82 68.58 0)
+	(hierarchical_label "DIR2"
+		(shape output)
+		(at 161.29 85.09 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left)
 		)
-		(uuid "17120d3e-1bad-4131-99b3-b52bd921e694")
+		(uuid "0ef13a7d-e1ef-41af-a9cd-e83a8ed9f23e")
 	)
-	(hierarchical_label "USCITA"
-		(shape input)
-		(at 160.02 69.85 0)
+	(hierarchical_label "STP4"
+		(shape output)
+		(at 161.29 104.14 0)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
 			(justify left)
 		)
-		(uuid "178309c5-2638-4a2b-b1a2-eef27de49eb2")
+		(uuid "383a7065-8f2e-466c-a7b3-8ec288147f6d")
+	)
+	(hierarchical_label "STP2"
+		(shape output)
+		(at 161.29 88.9 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "3a1fda61-c37a-4972-be98-776c718e7323")
+	)
+	(hierarchical_label "STP1"
+		(shape output)
+		(at 161.29 81.28 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "534bc7bf-4dca-470d-979d-3a4f0dad92a1")
+	)
+	(hierarchical_label "DIR1"
+		(shape output)
+		(at 161.29 77.47 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "67cfb05d-e147-4b76-b62a-fd6920c538b8")
+	)
+	(hierarchical_label "DIR3"
+		(shape output)
+		(at 161.29 92.71 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "80602fe2-42a4-4af0-862d-0d39bd8fab24")
+	)
+	(hierarchical_label "DIR4"
+		(shape output)
+		(at 161.29 100.33 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "c662db8e-8040-4d21-aad9-84285e9acb10")
+	)
+	(hierarchical_label "STP3"
+		(shape output)
+		(at 161.29 96.52 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "f60d43de-3d71-4ce8-b05b-84af171196e8")
 	)
 )

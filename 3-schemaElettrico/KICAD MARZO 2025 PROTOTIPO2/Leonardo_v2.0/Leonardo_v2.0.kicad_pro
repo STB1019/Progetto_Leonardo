@@ -429,7 +429,7 @@
       "no_connect_dangling": "warning",
       "pin_not_connected": "error",
       "pin_not_driven": "error",
-      "pin_to_pin": "warning",
+      "pin_to_pin": "error",
       "power_pin_not_driven": "error",
       "same_local_global_label": "warning",
       "similar_label_and_power": "warning",
@@ -639,10 +639,6 @@
     [
       "39e3c88c-8e9d-4867-905f-3149dff2cff7",
       "Stepper_Motor_driver3"
-    ],
-    [
-      "4531a18b-4ea4-45d8-a026-38aca6a8de52",
-      "LUCAù"
     ]
   ],
   "text_variables": {}
