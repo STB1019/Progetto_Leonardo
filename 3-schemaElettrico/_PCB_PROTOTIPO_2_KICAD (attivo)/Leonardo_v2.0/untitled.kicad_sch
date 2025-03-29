@@ -16,6 +16,17 @@
 		)
 		(uuid "0ef13a7d-e1ef-41af-a9cd-e83a8ed9f23e")
 	)
+	(hierarchical_label "M1"
+		(shape output)
+		(at 162.56 55.88 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "32983b91-cfb2-4cb0-b714-04245717e5a7")
+	)
 	(hierarchical_label "STP4"
 		(shape output)
 		(at 161.29 104.14 0)
@@ -71,6 +82,39 @@
 		)
 		(uuid "80602fe2-42a4-4af0-862d-0d39bd8fab24")
 	)
+	(hierarchical_label "M2"
+		(shape output)
+		(at 162.56 59.69 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "89f3bf8d-13f5-4f8c-9f09-d3d439e85268")
+	)
+	(hierarchical_label "BAT_LVL"
+		(shape output)
+		(at 102.87 57.15 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "b705e8cc-6d4d-4acf-ab4f-67d97ad7d75a")
+	)
+	(hierarchical_label "M3"
+		(shape output)
+		(at 162.56 63.5 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "b94ee423-b4a6-491e-9a59-aa5498a0f446")
+	)
 	(hierarchical_label "DIR4"
 		(shape output)
 		(at 161.29 100.33 0)
@@ -81,6 +125,17 @@
 			(justify left)
 		)
 		(uuid "c662db8e-8040-4d21-aad9-84285e9acb10")
+	)
+	(hierarchical_label "PWM_EN"
+		(shape output)
+		(at 162.56 50.8 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "ed376071-5538-40cb-aae9-3698ed77ef0f")
 	)
 	(hierarchical_label "STP3"
 		(shape output)

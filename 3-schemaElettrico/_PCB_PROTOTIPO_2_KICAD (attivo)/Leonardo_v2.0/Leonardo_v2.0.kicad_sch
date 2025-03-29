@@ -1479,6 +1479,16 @@
 	)
 	(wire
 		(pts
+			(xy 100.33 118.11) (xy 111.76 118.11)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1b730eb7-4654-4eb5-b53f-bdf797c39db7")
+	)
+	(wire
+		(pts
 			(xy 194.31 81.28) (xy 218.44 81.28)
 		)
 		(stroke
@@ -1486,6 +1496,16 @@
 			(type default)
 		)
 		(uuid "1c99fe8c-d640-420f-9757-14626d750c07")
+	)
+	(wire
+		(pts
+			(xy 102.87 120.65) (xy 102.87 152.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "212bc476-07f9-49a2-acc7-64d492ae3470")
 	)
 	(wire
 		(pts
@@ -1506,6 +1526,16 @@
 			(type default)
 		)
 		(uuid "26bf82ba-c196-4336-8f94-4683332b726d")
+	)
+	(wire
+		(pts
+			(xy 87.63 149.86) (xy 100.33 149.86)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "271e0df8-0acf-471f-a232-c140a0b67b69")
 	)
 	(wire
 		(pts
@@ -1599,6 +1629,26 @@
 	)
 	(wire
 		(pts
+			(xy 111.76 120.65) (xy 102.87 120.65)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "39f38f79-2818-48f7-8fe6-0fe49fae6a83")
+	)
+	(wire
+		(pts
+			(xy 111.76 124.46) (xy 105.41 124.46)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3a607a9d-db07-4059-950c-eb2406d6eb0e")
+	)
+	(wire
+		(pts
 			(xy 234.95 109.22) (xy 247.65 109.22)
 		)
 		(stroke
@@ -1636,6 +1686,16 @@
 			(type default)
 		)
 		(uuid "3e197a95-aefe-46a4-858c-4b338a0d6f02")
+	)
+	(wire
+		(pts
+			(xy 97.79 115.57) (xy 97.79 147.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3f65fab5-c369-4fec-8ce8-913f5c7b1506")
 	)
 	(wire
 		(pts
@@ -1679,6 +1739,16 @@
 	)
 	(wire
 		(pts
+			(xy 105.41 154.94) (xy 87.63 154.94)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "50bc6ddf-7369-461a-980e-a98ef918b8e5")
+	)
+	(wire
+		(pts
 			(xy 234.95 111.76) (xy 247.65 111.76)
 		)
 		(stroke
@@ -1716,6 +1786,16 @@
 			(type default)
 		)
 		(uuid "5b386014-8945-42b5-833a-12a4fda8c7f7")
+	)
+	(wire
+		(pts
+			(xy 102.87 152.4) (xy 87.63 152.4)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5fe3ce80-de4e-45c7-91bf-c97c2f58f3d3")
 	)
 	(wire
 		(pts
@@ -1879,6 +1959,16 @@
 	)
 	(wire
 		(pts
+			(xy 97.79 147.32) (xy 87.63 147.32)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "82efbac9-0c93-49d4-ba51-14a4bd65c8e0")
+	)
+	(wire
+		(pts
 			(xy 234.95 86.36) (xy 247.65 86.36)
 		)
 		(stroke
@@ -1929,6 +2019,16 @@
 	)
 	(wire
 		(pts
+			(xy 100.33 149.86) (xy 100.33 118.11)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8ceb8629-f255-4324-9fa6-ff8abf464507")
+	)
+	(wire
+		(pts
 			(xy 234.95 114.3) (xy 247.65 114.3)
 		)
 		(stroke
@@ -1946,6 +2046,26 @@
 			(type default)
 		)
 		(uuid "8ee85bd7-87b9-4a47-b196-3311e26faca2")
+	)
+	(wire
+		(pts
+			(xy 111.76 115.57) (xy 97.79 115.57)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9164db26-0a77-4586-8d19-1450171c010f")
+	)
+	(wire
+		(pts
+			(xy 105.41 124.46) (xy 105.41 154.94)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "91a2adf5-9638-436c-b7d7-d7cb080ae34b")
 	)
 	(wire
 		(pts
@@ -3199,16 +3319,6 @@
 				(justify left top)
 			)
 		)
-		(pin "INGRESSO" input
-			(at 111.76 95.25 180)
-			(uuid "c1d70293-ec11-416a-a35e-47485d499b17")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
 		(pin "DIR3" output
 			(at 168.91 96.52 0)
 			(uuid "2e842bc9-c23b-4e5a-ae8c-2d00372328c4")
@@ -3287,6 +3397,56 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
+			)
+		)
+		(pin "M1" output
+			(at 111.76 115.57 180)
+			(uuid "55a1c6d8-d7a1-4df1-aa6e-410b2e86922c")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "M2" output
+			(at 111.76 118.11 180)
+			(uuid "070ee495-096a-4a87-ad53-55df7f8f495f")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "M3" output
+			(at 111.76 120.65 180)
+			(uuid "56656b9f-422b-41f8-9cee-f8d650d9d50d")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "PWM_EN" output
+			(at 111.76 124.46 180)
+			(uuid "18068abc-c25a-4e1f-af65-0267c6ac7e07")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "BAT_LVL" output
+			(at 111.76 86.36 180)
+			(uuid "3b248fe2-7f87-46ba-865b-8f77665b17be")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 			)
 		)
 		(instances
