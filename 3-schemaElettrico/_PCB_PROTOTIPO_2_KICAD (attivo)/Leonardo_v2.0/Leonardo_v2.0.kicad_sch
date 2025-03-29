@@ -3072,7 +3072,7 @@
 	)
 	(symbol
 		(lib_id "Device:Speaker")
-		(at 153.67 149.86 0)
+		(at 148.59 147.32 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -3081,7 +3081,7 @@
 		(fields_autoplaced yes)
 		(uuid "bdfe68ae-f208-4512-99df-cb3b6eb306a9")
 		(property "Reference" "LS1"
-			(at 158.75 149.8599 0)
+			(at 153.67 147.3199 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3090,7 +3090,7 @@
 			)
 		)
 		(property "Value" "Speaker"
-			(at 158.75 152.3999 0)
+			(at 153.67 149.8599 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3099,7 +3099,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 153.67 154.94 0)
+			(at 148.59 152.4 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3108,7 +3108,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 153.416 151.13 0)
+			(at 148.336 148.59 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3117,7 +3117,7 @@
 			)
 		)
 		(property "Description" "Speaker"
-			(at 153.67 149.86 0)
+			(at 148.59 147.32 0)
 			(effects
 				(font
 					(size 1.27 1.27)
