@@ -84,6 +84,15 @@ O     ->  pwm default value 0
 I     ->  pwm default value 255
 */
 
+void test_esp(){
+
+  /*delay(500);
+  digitalWrite(dir_dc_1,HIGH);
+  delay(500);
+  digitalWrite(dir_dc_1,LOW);
+*/
+}
+
 
 void loop() {
 
