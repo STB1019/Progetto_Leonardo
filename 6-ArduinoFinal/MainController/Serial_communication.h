@@ -1,5 +1,5 @@
 //to enable exceptions you have to manually configure the IDE
-#include "Movement.h"
+#include "Movement_ESP.h"
 
 String default_mex = "abcd";
 int timer_micro = 500;
@@ -8,7 +8,7 @@ void serialCommOpener(){
     
     //serial_movement.begin(1000);
     //serial_sonar.begin(2000);
-    Serial.begin(9600);
+    Serial.begin(115200);
     Serial.println("Serial comunication port opened");
 
 }

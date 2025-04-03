@@ -19,12 +19,13 @@ String stringaoldold = "";
 String mex = "H";
 char state='H';
 uint8_t speed=255;
-String mex_read = "aaa"
+String mex_read = "aaa";
 
 uint8_t mex_to_proc = 0;    //pointer of the message to be processed
 uint8_t mex_last = 0;       //pointer of the last message received
-uint8_t bit_dim_buffer = 4; //2^bit_dim_buffer sets dimension of the buffer, and pointer%2^bit_dim_buffer gives the position inside the buffer of the mex selected
-String array_mex[2^bit_dim_buffer];
+const int bit_dim_buffer = 4; //2^bit_dim_buffer sets dimension of the buffer, and pointer%2^bit_dim_buffer gives the position inside the buffer of the mex selected
+const int dim_array = 2^bit_dim_buffer;
+String array_mex[dim_array];
 bool new_mex = false; 
 //int lenght = 10;
 //char mess[lenght] = "";
@@ -83,19 +84,28 @@ O     ->  pwm default value 0
 I     ->  pwm default value 255
 */
 
+void test_esp(){
+
+  /*delay(500);
+  digitalWrite(dir_dc_1,HIGH);
+  delay(500);
+  digitalWrite(dir_dc_1,LOW);
+*/
+}
+
 
 void loop() {
 
-  if (millis() - lastmillis > timeout) state = 'H';
+  //if (millis() - lastmillis > timeout) state = 'H';
 
   if (Serial.available()) {
     mex = Serial.readString();
     Serial.print("recived:");
     Serial.println(mex);
     //lastmillis = millis();
-    /*
-    state = msg.charAt(0);
-    //serialAnalyzer(msg);
+    
+    state = mex.charAt(0);
+    //serialAnalyzer(mex);
     //speed= seconda parte della stringa toInt
 
     switch (state) {
@@ -123,7 +133,8 @@ void loop() {
       analogWrite(PWM_PIN, 255);
       break;
   }
-  */
+  
+  //*/
 
   if(mex =="STACCCAH"){
 
@@ -236,149 +247,12 @@ void loop() {
       break;
     }
   }
-
-
   }
-/////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////
-void toBeTested(){
+}
+  /*
 
-  if (Serial.available()) {
-    mex_read = Serial.readString();
-    Serial.print("recived:");
-    Serial.println(mex_read);
-    new_mex = true;
-    String aux_mex = "aaa";
-    if(mex_read.lenght()<2^bit_dim_buffer){
-      for(int i = 0; i<mex_read.lenght(); i++){
-        array_mex[(i+mex_last)%2^bit_dim_buffer] = mex_read.charAt(i); 
-      }
-      mex_last += mex_read.lenght();
-    }
-    else {
-      serialWriter("error: buffer overflow");
-      new_mex=false; 
-    }
-    
-    while(new_mex){
-      if(!(mex_last%2^bit_dim_buffer == mex_to_proc%2^bit_dim_buffer)){
-        if( == 'P'){
-          set_pwm(int(mex[1])*100 + int(mex[2])*10 + int(mex[3]));
-        }
-
-        else if(mex.charAt(0) == 'O'){
-          serialWriter("not moving");
-          stop_movement();
-        }
-        else if(mex.charAt(0) == 'I'){
-          default_movement();
-          serialWriter("moving");
-        }
-
-        else if(mex.charAt(0) == 'S'){
-          
-          bool_dir = false;
-
-          if(mex.charAt(2) == 'U'){
-            bool_dir = true;
-          }
-          
-          switch(mex.charAt(1)){
-            case 1:
-
-                //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
-                moveAxis(dir_dc1, step1, bool_dir, timer_micro);
-                delay(500);
-
-            break;
-
-            case 2:
-
-                //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
-                  moveAxis(dir_dc2, step2, bool_dir, timer_micro);
-                  delay(500);  
-        
-            break;
-
-            case 3:
-
-                //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
-                moveAxis(dir_dc3, step3, bool_dir, timer_micro);
-                delay(500);  
-
-            break;
-
-            case 4:
-
-                //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
-                  moveAxis(dir_dc4, step4, bool_dir, timer_micro);
-                  delay(500); 
-
-            break;
-
-            default:
-
-              serialWriter("Something's wrong, i can feel it");
-              stop_movement();
-        
-            break;
-          }
-        }
-        else{
-          serialWriter(mex+" entrato in gestione dc");
-          switch(mex.charAt(0)){
-            case 'F':
-
-                
-                serialWriter("avanti");
-              forward_mov();
-
-            break;
-
-            case 'B':
-
-                back_mov();
-                serialWriter("indietro");
-
-            break;
-
-            case 'L':
-
-                left_mov();
-                serialWriter("sinistra");
-
-            break;
-
-            case 'R':
-
-                right_mov();
-                serialWriter("destra");
-
-            break;
-
-            default:
-            //default block everything
-              serialWriter("Something's wrong, i can feel it");
-              serialWriter(mex);
-              stop_movement();
-
-              
-        
-            break;
-          }
-        }
-
-      }//TODO: FINIRE
-      
-    }
-
-
-
-    if(mex =="STACCCAH"){
+  
+      if(mex =="STACCCAH"){
 
       serialCommCloser();
       
@@ -490,9 +364,143 @@ void toBeTested(){
       }
     }
 
-  }
-}
+  }*/
 
+
+
+
+/*
+void toBeTested(){
+
+  if (Serial.available()) {
+    mex_read = Serial.readString();
+    Serial.print("recived:");
+    Serial.println(mex_read);
+    new_mex = true;
+    String aux_mex = "aaa";
+    if(mex_read.length()<2^bit_dim_buffer){
+      for(int i = 0; i<mex_read.length(); i++){
+        array_mex[(i+mex_last)%2^bit_dim_buffer] = mex_read.charAt(i); 
+      }
+      mex_last = mex_last + mex_read.length();
+    }
+    else {
+      serialWriter("error: buffer overflow");
+      new_mex=false; 
+    }
+    
+    while(mex_last != mex_to_proc){
+      if(!(mex_last%2^bit_dim_buffer == mex_to_proc%2^bit_dim_buffer)){
+        if(mex.charAt(0) == 'P'){
+          set_pwm(int(mex[1])*100 + int(mex[2])*10 + int(mex[3]));
+        }
+
+        else if(mex.charAt(0) == 'O'){
+          serialWriter("not moving");
+          stop_movement();
+        }
+        else if(mex.charAt(0) == 'I'){
+          default_movement();
+          serialWriter("moving");
+        }
+
+        else if(mex.charAt(0) == 'S'){
+          
+          bool_dir = false;
+
+          if(mex.charAt(2) == 'U'){
+            bool_dir = true;
+          }
+          
+          switch(mex.charAt(1)){
+            case 1:
+
+                //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
+                moveAxis(dir_dc1, step1, bool_dir, timer_micro);
+                delay(500);
+
+            break;
+
+            case 2:
+
+                //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
+                  moveAxis(dir_dc2, step2, bool_dir, timer_micro);
+                  delay(500);  
+        
+            break;
+
+            case 3:
+
+                //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
+                moveAxis(dir_dc3, step3, bool_dir, timer_micro);
+                delay(500);  
+
+            break;
+
+            case 4:
+
+                //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
+                  moveAxis(dir_dc4, step4, bool_dir, timer_micro);
+                  delay(500); 
+
+            break;
+
+            default:
+
+              serialWriter("Something's wrong, i can feel it");
+              stop_movement();
+        
+            break;
+          }
+        }
+        else{
+          serialWriter(mex+" entrato in gestione dc");
+          switch(mex.charAt(0)){
+            case 'F':
+
+                
+                serialWriter("avanti");
+              forward_mov();
+
+            break;
+
+            case 'B':
+
+                back_mov();
+                serialWriter("indietro");
+
+            break;
+
+            case 'L':
+
+                left_mov();
+                serialWriter("sinistra");
+
+            break;
+
+            case 'R':
+
+                right_mov();
+                serialWriter("destra");
+
+            break;
+
+            default:
+            //default block everything
+              serialWriter("Something's wrong, i can feel it");
+              serialWriter(mex);
+              stop_movement();
+
+              
+        
+            break;
+          }
+        }
+
+      }//TODO: FINIRE
+      mex_to_proc++;
+    }
+  }
 
   
 
@@ -536,9 +544,9 @@ void toBeTested(){
       }
   
   serialAnalyzer(stringaold);
-*/
-}
 
+}
+*/
 void serialWriteTest() {
 
   serialCommOpener();
@@ -561,7 +569,7 @@ void serialReadTest(String stringa) {
 
 
 
-void dummyMovement2() {
+void dummymovement2() {
   int delay_time = 300;
   forward_mov();
 
