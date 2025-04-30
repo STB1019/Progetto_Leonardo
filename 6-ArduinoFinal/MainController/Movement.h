@@ -11,7 +11,7 @@ void set_pwm(int pwm_v){
   int pwm_value = analogRead(PWM_PIN);
   if(pwm_v > pwm_value){
     for(int i=pwm_value; i<=pwm_v; i++){
-      delay(1);
+      
       analogWrite(PWM_PIN, i);
 
     }
@@ -20,7 +20,7 @@ void set_pwm(int pwm_v){
   }
   else{
     for(int i=pwm_value; i>=pwm_v; i--){
-      delay(50);
+      
       analogWrite(PWM_PIN, i);
     }
     
@@ -138,5 +138,52 @@ void moveAxis(int dir_pin_axis, int step_pin_axis, bool direction, int timer_mic
   digitalWrite(dir_pin_axis, LOW);
 }  
   
+
+float timeMovement (char* c){
+
+  float time_0 = 0;
+  float time_0 = 0;
+  stop_movement();
+
+  switch (c) {
+    case 'F':
+      forward_mov();
+      
+      //analogWrite(PWM_PIN, speed);
+      break;
+    case 'R':
+      right_mov();
+      //analogWrite(PWM_PIN, speed);
+      break;
+    case 'L':
+      left_mov();
+      //analogWrite(PWM_PIN, speed);
+      break;
+    case 'B':
+      back_mov();
+      //analogWrite(PWM_PIN, speed);
+      break;
+
+    default:
+      println("selected incorrect movement");
+
+    break; 
+  }
+
+  
+
+  time_0 = millis();
+
+  default_movement();
+
+  while(c != 'S'){}
+
+  stop_movement();
+
+  time_1 = millis();
+
+  return time_1-time_0;
+
+}
 
 

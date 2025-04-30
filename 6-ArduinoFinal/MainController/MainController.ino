@@ -31,6 +31,12 @@ bool new_mex = false;
 //char mess[lenght] = "";
 unsigned long timeout=5000;
 unsigned long lastmillis=0;
+
+int time_0 = 0;
+int time_1 = 0;
+int delta = 0;
+
+int pwm_new = 0;
 void setup() {
 
 
@@ -103,171 +109,36 @@ void loop() {
     Serial.print("recived:");
     Serial.println(mex);
     //lastmillis = millis();
-    
-    state = mex.charAt(0);
-    //serialAnalyzer(mex);
-    //speed= seconda parte della stringa toInt
 
-    switch (state) {
-    case 'F':
-      forward_mov();
-      
-      //analogWrite(PWM_PIN, speed);
-      break;
-    case 'R':
-      right_mov();
-      //analogWrite(PWM_PIN, speed);
-      break;
-    case 'L':
-      left_mov();
-      //analogWrite(PWM_PIN, speed);
-      break;
-    case 'B':
-      back_mov();
-      //analogWrite(PWM_PIN, speed);
-      break;
-    case 'S':
-      analogWrite(PWM_PIN, 0);
-      break;
-    case 'X':
-      analogWrite(PWM_PIN, 255);
-      break;
-  }
-  
-  //*/
-
-  if(mex =="STACCCAH"){
-
-    serialCommCloser();
-    
-  }
-  
-  if(mex.charAt(0) == 'P'){
-    set_pwm(int(mex[1])*100 + int(mex[2])*10 + int(mex[3]));
-  }
-
-  else if(mex.charAt(0) == 'O'){
-    serialWriter("not moving");
-    stop_movement();
-  }
-  else if(mex.charAt(0) == 'I'){
-    default_movement();
-    serialWriter("moving");
-  }
-
-  else if(mex.charAt(0) == 'S'){
-    
-    bool_dir = false;
-
-    if(mex.charAt(2) == 'U'){
-      bool_dir = true;
-    }
-    
-    switch(mex.charAt(1)){
-      case 1:
-
-          //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
-          moveAxis(dir_dc1, step1, bool_dir, timer_micro);
-          delay(500);
-
-      break;
-
-      case 2:
-
-          //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
-            moveAxis(dir_dc2, step2, bool_dir, timer_micro);
-            delay(500);  
-  
-      break;
-
-      case 3:
-
-          //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
-          moveAxis(dir_dc3, step3, bool_dir, timer_micro);
-          delay(500);  
-
-      break;
-
-      case 4:
-
-          //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
-            moveAxis(dir_dc4, step4, bool_dir, timer_micro);
-            delay(500); 
-
-      break;
-
-      default:
-
-        serialWriter("Something's wrong, i can feel it");
-        stop_movement();
-  
-      break;
-    }
-  }
-  else{
-    serialWriter(mex+" entrato in gestione dc");
-    switch(mex.charAt(0)){
-      case 'F':
-
-          
-          serialWriter("avanti");
-         forward_mov();
-
-      break;
-
-      case 'B':
-
-          back_mov();
-          serialWriter("indietro");
-
-      break;
-
-      case 'L':
-
-          left_mov();
-          serialWriter("sinistra");
-
-      break;
-
-      case 'R':
-
-          right_mov();
-          serialWriter("destra");
-
-      break;
-
-      default:
-      //default block everything
-        serialWriter("Something's wrong, i can feel it");
-        serialWriter(mex);
-        stop_movement();
-
-        
-  
-      break;
-    }
-  }
-  }
-}
-  /*
-
-  
-      if(mex =="STACCCAH"){
+    if(mex =="STACCCAH"){
 
       serialCommCloser();
       
     }
-  
+    
     if(mex.charAt(0) == 'P'){
-      set_pwm(int(mex[1])*100 + int(mex[2])*10 + int(mex[3]));
+      pwm_new = (int(mex[1])-48)*100 + (int(mex[2])-48)*10 + (int(mex[3])-48);
+      set_pwm(pwm_new);
+      String stringa = "new pwm setted at "+String(pwm_new)+" ";
+      serialWriter(stringa);
+
     }
 
     else if(mex.charAt(0) == 'O'){
       serialWriter("not moving");
       stop_movement();
+      if(time_0){
+          
+        time_1 = millis();
+        delta = (time_1-time_0);
+        String stringa = "moved for "+String(delta)+" milliseconds";
+        serialWriter(stringa);
+        time_0 = time_1 = 0;
+      }
     }
     else if(mex.charAt(0) == 'I'){
       default_movement();
+      time_0 = millis();
       serialWriter("moving");
     }
 
@@ -325,8 +196,7 @@ void loop() {
       switch(mex.charAt(0)){
         case 'F':
 
-            
-            serialWriter("avanti");
+          serialWriter("avanti");
           forward_mov();
 
         break;
@@ -350,7 +220,7 @@ void loop() {
             right_mov();
             serialWriter("destra");
 
-        break;
+        break;        
 
         default:
         //default block everything
@@ -358,16 +228,11 @@ void loop() {
           serialWriter(mex);
           stop_movement();
 
-          
-    
         break;
       }
     }
-
-  }*/
-
-
-
+  }
+}
 
 /*
 void toBeTested(){
@@ -506,46 +371,7 @@ void toBeTested(){
 
   
   
-  //TODO:  fixing the loop, leonardo stops for a moment between cycles
 
-  /* stringa = Serial.readStringUntil('\n');
-
-  //
- 
-    while(!stringa.equals("STACCAH")){
-      
-
-      if(stringa != stringaold){
-          stringaold = stringa;
-
-        //stringaold.toCharArray(mess, lenght);
-        
-        serialAnalyzer(stringaold);
-      }
-      
-        serialAnalyzer(stringaold);
-      
-      
-      
-      stringa = Serial.readStringUntil('\n');
-      
-
-    }
-    serialCommCloser();
-
-    /*
-    //stringa = Serial.readStringUntil('\n');
-
-      if(stringa != stringaold){
-        stringaold = stringa;
-        //stringaold.toCharArray(mess, lenght);
-        
-        
-      }
-  
-  serialAnalyzer(stringaold);
-
-}
 */
 void serialWriteTest() {
 
@@ -607,40 +433,6 @@ void dummymovement2() {
   stop_movement();
   delay(delay_time);
 }
-
-
-//TO BE TESTED THE MOTOR MAPPING
-/*
-void dummyMovement(){
-  digitalWrite(dir_dc1, LOW);
-  digitalWrite(dir_dc2, LOW);
-  digitalWrite(dir_dc3, HIGH);
-  digitalWrite(dir_dc4, HIGH);
-  analogWrite(6, 200);
-  //default_movement();
-
-  delay(2000);
-  stop_movement();
-  delay(2000);
-
-  move(dir_dc1, HIGH);
-  move(dir_dc2, HIGH);
-  move(dir_dc3, LOW);
-  move(dir_dc4, LOW);
-  
-  default_movement();
-
-  
-
-  delay(2000);
-  stop_movement();
-  delay(2000);
-  
-}
-
-*/
-
-
 
 void dummyStepper() {
 
