@@ -3,6 +3,9 @@
 #define dir_dc3 4
 #define dir_dc4 5
 
+/// ATTENZIONEE: I PIN DA 6 a 11 non possono essere usati perchè li usa internamente l'esp per scrivere la flash
+
+
 #define dir_dc1_2 14
 #define dir_dc2_2 15
 #define dir_dc3_2 16

@@ -149,7 +149,55 @@ void loop() {
         serialWriter("moving");
         }
     
+    else  if(chr == 'S'){
+      
+        bool_dir = false;
+
+        if(mex.charAt(2) == 'U'){
+          bool_dir = true;
+        }
+      
+        switch(mex.charAt(1)){
+          case 1:
+
+              //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
+            moveAxis(dir_dc1, step1, bool_dir, timer_micro);
+            delay(500);
+
+            break;
+
+          case 2:
+
+            //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
+            moveAxis(dir_dc2, step2, bool_dir, timer_micro);
+            delay(500);  
     
+            break;
+
+          case 3:
+
+            //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
+            moveAxis(dir_dc3, step3, bool_dir, timer_micro);
+            delay(500);  
+
+            break;
+
+          case 4:
+
+            //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
+            moveAxis(dir_dc4, step4, bool_dir, timer_micro);
+            delay(500); 
+
+            break;
+
+          default:
+
+            //serialWriter("Something's wrong, i can feel it");
+            stop_movement();
+    
+            break;
+        }
+  }
       
     
 
