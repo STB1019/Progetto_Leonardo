@@ -37,6 +37,8 @@ int time_1 = 0;
 int delta = 0;
 
 int pwm_new = 0;
+
+
 void setup() {
 
 
@@ -105,134 +107,157 @@ void loop() {
   //if (millis() - lastmillis > timeout) state = 'H';
 
   if (Serial.available()) {
-    mex = Serial.readString();
+    String mex = Serial.readStringUntil('\n');
+    char chr = mex.charAt(0);
+
+    Serial.println(chr);
     Serial.print("recived:");
     Serial.println(mex);
-    //lastmillis = millis();
 
-    if(mex =="STACCCAH"){
-
-      serialCommCloser();
-      
-    }
+    //Serial.println("000000");
+    //serialWriter(mex+" entrato in gestione dc");
     
-    if(mex.charAt(0) == 'P'){
-      pwm_new = (int(mex[1])-48)*100 + (int(mex[2])-48)*10 + (int(mex[3])-48);
-      set_pwm(pwm_new);
-      String stringa = "new pwm setted at "+String(pwm_new)+" ";
-      serialWriter(stringa);
+    
+    if(chr == 'Y'){
 
-    }
-
-    else if(mex.charAt(0) == 'O'){
-      serialWriter("not moving");
-      stop_movement();
-      if(time_0){
-          
-        time_1 = millis();
-        delta = (time_1-time_0);
-        String stringa = "moved for "+String(delta)+" milliseconds";
+        serialCommCloser();
+        }
+    
+    else  if(chr == 'P'){
+        pwm_new = (int(mex[1])-48)*100 + (int(mex[2])-48)*10 + (int(mex[3])-48);
+        set_pwm(pwm_new);
+        String stringa = "new pwm setted at "+String(pwm_new)+" ";
         serialWriter(stringa);
-        time_0 = time_1 = 0;
-      }
-    }
-    else if(mex.charAt(0) == 'I'){
-      default_movement();
-      time_0 = millis();
-      serialWriter("moving");
-    }
+        }
 
-    else if(mex.charAt(0) == 'S'){
+    else  if(chr == 'O'){
       
-      bool_dir = false;
-
-      if(mex.charAt(2) == 'U'){
-        bool_dir = true;
+        serialWriter("not moving");
+        stop_movement();
+        if(time_0){
+          
+          time_1 = millis();
+          delta = (time_1-time_0);
+          String stringa = "moved for "+String(delta)+" milliseconds";
+          serialWriter(stringa);
+          time_0 = time_1 = 0;
+        }
       }
+    else  if(chr == 'I'){
+        default_movement();
+        time_0 = millis();
+        serialWriter("moving");
+        }
+    
+    else  if(chr == 'S'){
       
-      switch(mex.charAt(1)){
-        case 1:
+        bool_dir = false;
 
-            //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
+        if(mex.charAt(2) == 'U'){
+          bool_dir = true;
+        }
+      
+        switch(mex.charAt(1)){
+          case 1:
+
+              //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
             moveAxis(dir_dc1, step1, bool_dir, timer_micro);
             delay(500);
 
-        break;
+            break;
 
-        case 2:
+          case 2:
 
             //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
-              moveAxis(dir_dc2, step2, bool_dir, timer_micro);
-              delay(500);  
+            moveAxis(dir_dc2, step2, bool_dir, timer_micro);
+            delay(500);  
     
-        break;
+            break;
 
-        case 3:
+          case 3:
 
             //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
             moveAxis(dir_dc3, step3, bool_dir, timer_micro);
             delay(500);  
 
-        break;
+            break;
 
-        case 4:
+          case 4:
 
             //moveAxis gets as input parameters (int dir_pin_axis, int step_pin_axis, bool direction, int timer_microseconds)
-              moveAxis(dir_dc4, step4, bool_dir, timer_micro);
-              delay(500); 
+            moveAxis(dir_dc4, step4, bool_dir, timer_micro);
+            delay(500); 
 
-        break;
+            break;
 
-        default:
+          default:
 
-          serialWriter("Something's wrong, i can feel it");
-          stop_movement();
+            //serialWriter("Something's wrong, i can feel it");
+            stop_movement();
     
-        break;
-      }
-    }
+            break;
+        }
+  }
+      
+    
+
     else{
-      serialWriter(mex+" entrato in gestione dc");
-      switch(mex.charAt(0)){
-        case 'F':
-
-          serialWriter("avanti");
-          forward_mov();
-
-        break;
-
-        case 'B':
-
-            back_mov();
-            serialWriter("indietro");
+      switch(chr){
+      case 'F':
+        //Serial.println("0000FFF0");
+        stop_movement();
+        delay(100);
+        serialWriter("avanti");
+        forward_mov();
+        default_movement();
 
         break;
 
-        case 'L':
-
-            left_mov();
-            serialWriter("sinistra");
-
+      case 'B':
+        stop_movement();
+        delay(100);
+        back_mov();
+        serialWriter("indietro");
+        default_movement();
         break;
 
-        case 'R':
+      case 'L':
+        stop_movement();
+        delay(100);
+        left_mov();
+        serialWriter("sinistra");
+        default_movement();
+        break;
 
-            right_mov();
-            serialWriter("destra");
-
+      case 'R':
+        stop_movement();
+        delay(100);
+        right_mov();
+        serialWriter("destra");
+        default_movement();
         break;        
+
+      
+        
+      
+    
 
         default:
         //default block everything
-          serialWriter("Something's wrong, i can feel it");
-          serialWriter(mex);
           stop_movement();
+          serialWriter("Something's wrong, i can feel it");
+          delay(100);
+          serialWriter(mex);
 
-        break;
+          break;
       }
     }
+
+    
   }
+    
 }
+
 
 /*
 void toBeTested(){
