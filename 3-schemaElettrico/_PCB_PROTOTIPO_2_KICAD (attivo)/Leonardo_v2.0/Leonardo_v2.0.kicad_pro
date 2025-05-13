@@ -617,10 +617,6 @@
       "Microcontroller"
     ],
     [
-      "7d105e3b-59a1-4f1a-a9c2-b72d1453dd76",
-      "DC_Motor_driver"
-    ],
-    [
       "e19ffaaf-7dab-4afc-b5a3-8e6e67a99faf",
       "Stepper_Motor_driver"
     ],
