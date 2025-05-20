@@ -798,7 +798,7 @@
 	)
 	(wire
 		(pts
-			(xy 114.3 100.33) (xy 116.84 100.33)
+			(xy 104.14 99.06) (xy 135.89 99.06)
 		)
 		(stroke
 			(width 0)
@@ -908,17 +908,7 @@
 	)
 	(wire
 		(pts
-			(xy 116.84 99.06) (xy 135.89 99.06)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b05d1e12-180a-41f1-a747-a7e304a70d84")
-	)
-	(wire
-		(pts
-			(xy 114.3 96.52) (xy 135.89 96.52)
+			(xy 104.14 96.52) (xy 135.89 96.52)
 		)
 		(stroke
 			(width 0)
@@ -975,16 +965,6 @@
 			(type default)
 		)
 		(uuid "e039448e-dba1-4daa-9708-4f3c799cd412")
-	)
-	(wire
-		(pts
-			(xy 116.84 100.33) (xy 116.84 99.06)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "e0f3a697-dea1-4611-89e3-48e6096465ee")
 	)
 	(wire
 		(pts
@@ -1071,7 +1051,7 @@
 	)
 	(hierarchical_label "STP"
 		(shape input)
-		(at 114.3 96.52 180)
+		(at 104.14 96.52 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -1093,7 +1073,7 @@
 	)
 	(hierarchical_label "DIR"
 		(shape input)
-		(at 114.3 100.33 180)
+		(at 104.14 99.06 180)
 		(effects
 			(font
 				(size 1.27 1.27)
