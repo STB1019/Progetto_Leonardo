@@ -41,6 +41,10 @@ int pwm_new = 0;
 
 void setup() {
 
+  pinMode(dir_dc1_2, OUTPUT);
+  pinMode(dir_dc2_2, OUTPUT);
+  pinMode(dir_dc3_2, OUTPUT);
+  pinMode(dir_dc4_2, OUTPUT);
 
   pinMode(dir_dc1, OUTPUT);
   pinMode(dir_dc2, OUTPUT);

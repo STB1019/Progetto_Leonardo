@@ -16,7 +16,7 @@
 #define dir_step1 24
 #define dir_step2 20  
 #define dir_step3 21
-#define dir_step4 A0
+#define dir_step4 25
 
 #define step1 22
 #define step2 23
