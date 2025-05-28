@@ -46,56 +46,56 @@ void left_mov(){
   
   
   digitalWrite(dir_dc1, LOW); 
-  digitalWrite(dir_dc2, LOW);
+  digitalWrite(dir_dc2, HIGH);
   digitalWrite(dir_dc3, HIGH);
-  digitalWrite(dir_dc4, HIGH);
+  digitalWrite(dir_dc4, LOW);
 
-  digitalWrite(dir_dc1_2, HIGH);
+  digitalWrite(dir_dc1_2, LOW);
   digitalWrite(dir_dc2_2, HIGH);
   digitalWrite(dir_dc3_2, LOW);
-  digitalWrite(dir_dc4_2, LOW);
+  digitalWrite(dir_dc4_2, HIGH);
   
 }
 
 void right_mov(){
   
   digitalWrite(dir_dc1, HIGH);
-  digitalWrite(dir_dc2, HIGH);
+  digitalWrite(dir_dc2, LOW);
   digitalWrite(dir_dc3, LOW);
-  digitalWrite(dir_dc4, LOW);
+  digitalWrite(dir_dc4, HIGH);
 
   digitalWrite(dir_dc1_2, LOW); 
-  digitalWrite(dir_dc2_2, LOW);
-  digitalWrite(dir_dc3_2, HIGH);
+  digitalWrite(dir_dc2_2, HIGH);
+  digitalWrite(dir_dc3_2, LOW);
   digitalWrite(dir_dc4_2, HIGH);
   
 }
 
 void forward_mov(){
   
-  digitalWrite(dir_dc1, LOW);
+  digitalWrite(dir_dc1, HIGH);
   digitalWrite(dir_dc2, LOW);
-  digitalWrite(dir_dc3, LOW);
+  digitalWrite(dir_dc3, HIGH);
   digitalWrite(dir_dc4, LOW);
 
-  digitalWrite(dir_dc1_2, HIGH);
+  digitalWrite(dir_dc1_2, LOW);
   digitalWrite(dir_dc2_2, HIGH);
-  digitalWrite(dir_dc3_2, HIGH);
+  digitalWrite(dir_dc3_2, LOW);
   digitalWrite(dir_dc4_2, HIGH);
   
 }
 
 void back_mov(){
   
-  digitalWrite(dir_dc1, HIGH);
+  digitalWrite(dir_dc1, LOW);
   digitalWrite(dir_dc2, HIGH);
-  digitalWrite(dir_dc3, HIGH);
+  digitalWrite(dir_dc3, LOW);
   digitalWrite(dir_dc4, HIGH);
 
   digitalWrite(dir_dc1_2, LOW);
-  digitalWrite(dir_dc2_2, LOW);
+  digitalWrite(dir_dc2_2, HIGH);
   digitalWrite(dir_dc3_2, LOW);
-  digitalWrite(dir_dc4_2, LOW);
+  digitalWrite(dir_dc4_2, HIGH);
   
 }
 
