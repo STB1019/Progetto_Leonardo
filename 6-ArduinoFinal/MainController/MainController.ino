@@ -38,6 +38,8 @@ int delta = 0;
 
 int pwm_new = 0;
 
+bool movementAuthorized = false;  //variable to lock dc movement locally from signal too close to sonar sensor
+
 
 void setup() {
 
@@ -61,6 +63,7 @@ void setup() {
   pinMode(step2, OUTPUT);
   pinMode(step3, OUTPUT);
   pinMode(step4, OUTPUT);
+  pinMode(controller, INPUT);
 
   //security measure
   analogWrite(PWM_PIN, 0);
@@ -206,60 +209,124 @@ void loop() {
     
 
     else{
-      switch(chr){
-      case 'F':
-        //Serial.println("0000FFF0");
-        stop_movement();
-        delay(100);
-        serialWriter("avanti");
-        forward_mov();
-        default_movement();
+      if(movementAuthorized){
 
-        break;
+        switch(chr){
+          case 'F':
+            //Serial.println("0000FFF0");
+            stop_movement();
+            delay(100);
+            serialWriter("avanti");
+            forward_mov();
+            default_movement();
+            
 
-      case 'B':
-        stop_movement();
-        delay(100);
-        back_mov();
-        serialWriter("indietro");
-        default_movement();
-        break;
+            break;
 
-      case 'L':
-        stop_movement();
-        delay(100);
-        left_mov();
-        serialWriter("sinistra");
-        default_movement();
-        break;
+          case 'B':
+            stop_movement();
+            delay(100);
+            back_mov();
+            serialWriter("indietro");
+            default_movement();
 
-      case 'R':
-        stop_movement();
-        delay(100);
-        right_mov();
-        serialWriter("destra");
-        default_movement();
-        break;        
+            break;
 
-      
+          case 'L':
+            stop_movement();
+            delay(100);
+            left_mov();
+            serialWriter("sinistra");
+            default_movement();
+            break;
+
+          case 'R':
+            stop_movement();
+            delay(100);
+            right_mov();
+            serialWriter("destra");
+            default_movement();
+            break;        
+
+          
+            
+          
         
-      
-    
 
-        default:
-        //default block everything
-          stop_movement();
-          serialWriter("Something's wrong, i can feel it");
-          delay(100);
-          serialWriter(mex);
+          default:
+          //default block everything
+            stop_movement();
+            serialWriter("Something's wrong, i can feel it");
+            delay(100);
+            serialWriter(mex);
 
-          break;
-      }
+            break;
+          }
+          
+          
+
+        
+    /*/
+      else{
+      serialWriter("not moving");
+        stop_movement();
+        if(time_0){
+          
+          time_1 = millis();
+          delta = (time_1-time_0);
+          String stringa = "moved for "+String(delta)+" milliseconds";
+          serialWriter(stringa);
+          time_0 = time_1 = 0;
+        }
+    }*/
     }
-
+    
     
   }
     
+  }
+
+  if(movementAuthorized == false){
+      int temp = analogRead(controller);
+      
+
+      if (temp<1000 && temp>=800){
+          stop_movement();
+              delay(100);
+              serialWriter("avanti");
+              forward_mov();
+              default_movement();
+      }
+      else if (temp<1750 && temp>=1600){
+        stop_movement();
+              delay(100);
+              back_mov();
+              serialWriter("indietro");
+              default_movement();
+      }
+      else if (temp<2300 && temp>=2100){
+        stop_movement();
+              delay(100);
+              left_mov();
+              serialWriter("sinistra");
+              default_movement();
+      }
+      else if (temp<2700 && temp>2600){
+        stop_movement();
+              delay(100);
+              right_mov();
+              serialWriter("destra");
+              default_movement();
+      }
+
+      else if(temp<=50){
+          stop_movement();
+          delay(100);
+          serialWriter("Leonardo Fermo");   
+      }
+      serialWriter(String(temp));
+
+    }
 }
 
 

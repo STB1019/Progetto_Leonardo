@@ -23,6 +23,7 @@
 #define step3 12
 #define step4 13
 
+#define controller 14
 
 #define stepsPerRevolution 200 
 
