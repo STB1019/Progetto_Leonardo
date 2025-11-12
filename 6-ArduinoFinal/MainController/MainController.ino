@@ -39,7 +39,8 @@ int delta = 0;
 int pwm_new = 0;
 
 bool movementAuthorized = false;  //variable to lock dc movement locally from signal too close to sonar sensor
-
+//true: controlled by serial communication
+//false: controlled by manual controller
 
 void setup() {
 
@@ -290,7 +291,7 @@ void loop() {
       int temp = analogRead(controller);
       
 
-      if (temp<1000 && temp>=800){
+      if (temp<2600 && temp>=2500){
           stop_movement();
               delay(100);
               serialWriter("avanti");
@@ -304,14 +305,14 @@ void loop() {
               serialWriter("indietro");
               default_movement();
       }
-      else if (temp<2300 && temp>=2100){
+      else if (temp<1000 && temp>=800){
         stop_movement();
               delay(100);
               left_mov();
               serialWriter("sinistra");
               default_movement();
       }
-      else if (temp<2700 && temp>2600){
+      else if (temp<2200 && temp>2000){
         stop_movement();
               delay(100);
               right_mov();
