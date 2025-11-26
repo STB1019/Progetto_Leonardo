@@ -25,5 +25,8 @@
 
 #define controller 14
 
+#define trigPin 26
+#define echoPin 27
+
 #define stepsPerRevolution 200 
 

@@ -4,6 +4,9 @@
 //#include "Sonar_Completo_Leonardo.h"
 //#include "SoftwareSerial.h"
 //#include "Movement.h"
+#include <ESP32Servo.h>
+#include <math.h>
+#include "Sonar_v2.h"
 
 
 /*
@@ -38,7 +41,12 @@ int delta = 0;
 
 int pwm_new = 0;
 
-bool movementAuthorized = false;  //variable to lock dc movement locally from signal too close to sonar sensor
+//const int minAngle = 15;
+//const int maxAngle = 165;
+int sonar_index = minAngle;
+bool direction = true; //true 15 -> 165       false 165 -> 15
+
+bool movementAuthorized = true;  //variable to lock dc movement locally from signal too close to sonar sensor
 //true: controlled by serial communication
 //false: controlled by manual controller
 
@@ -66,6 +74,10 @@ void setup() {
   pinMode(step4, OUTPUT);
   pinMode(controller, INPUT);
 
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  myservo.attach(28);
+  
   //security measure
   analogWrite(PWM_PIN, 0);
 
@@ -132,7 +144,17 @@ void loop() {
         }
     
     else  if(chr == 'P'){
-        pwm_new = (int(mex[1])-48)*100 + (int(mex[2])-48)*10 + (int(mex[3])-48);
+
+        if(mex[1]>'0' && mex[1]<='9'){
+          pwm_new += (int(mex[1])-48)*100;  
+        }
+        if(mex[2]>'0' && mex[2]<='9'){
+          pwm_new += (int(mex[2])-48)*10;  
+        }
+        if(mex[3]>'0' && mex[3]<='9'){
+          pwm_new = (int(mex[3])-48);  
+        }
+        //pwm_new = (int(mex[1])-48)*100 + (int(mex[2])-48)*10 + (int(mex[3])-48);
         set_pwm(pwm_new);
         String stringa = "new pwm setted at "+String(pwm_new)+" ";
         serialWriter(stringa);
@@ -286,10 +308,25 @@ void loop() {
   }
     
   }
-
+  //printing phase and module for the sonar sscanner
+  serialWriter(String(sonar_index)+";"+String(scan_point(sonar_index)));
+  //scan_point(sonar_index);
+  if(direction){
+    sonar_index++;
+    if(sonar_index == maxAngle){
+      direction = false;
+    }
+  }
+  else{
+    sonar_index--;
+    if(sonar_index == minAngle){
+      direction = true;
+    }
+  }
+  
   if(movementAuthorized == false){
       int temp = analogRead(controller);
-      
+      serialWriter(String(temp));
 
       if (temp<2600 && temp>=2500){
           stop_movement();
@@ -325,10 +362,11 @@ void loop() {
           delay(100);
           serialWriter("Leonardo Fermo");   
       }
-      serialWriter(String(temp));
+      
 
     }
-}
+  }
+
 
 
 /*
