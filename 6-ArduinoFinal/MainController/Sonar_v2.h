@@ -103,5 +103,5 @@ int scan_point(int i){
     Serial.println();
   
   */
-  
+ return d; 
 }

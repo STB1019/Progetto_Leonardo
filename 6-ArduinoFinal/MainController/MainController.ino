@@ -76,7 +76,7 @@ void setup() {
 
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
-  myservo.attach(28);
+  myservo.attach(33);
   
   //security measure
   analogWrite(PWM_PIN, 0);
@@ -125,7 +125,8 @@ void test_esp(){
 void loop() {
 
   //if (millis() - lastmillis > timeout) state = 'H';
-
+  //Serial.println("aaa");
+  
   if (Serial.available()) {
     String mex = Serial.readStringUntil('\n');
     char chr = mex.charAt(0);
@@ -141,24 +142,24 @@ void loop() {
     if(chr == 'Y'){
 
         serialCommCloser();
-        }
+    }
     
     else  if(chr == 'P'){
-
+        pwm_new = 0;
         if(mex[1]>'0' && mex[1]<='9'){
           pwm_new += (int(mex[1])-48)*100;  
         }
-        if(mex[2]>'0' && mex[2]<='9'){
+        else if(mex[2]>'0' && mex[2]<='9'){
           pwm_new += (int(mex[2])-48)*10;  
         }
-        if(mex[3]>'0' && mex[3]<='9'){
-          pwm_new = (int(mex[3])-48);  
+        else if(mex[3]>'0' && mex[3]<='9'){
+          pwm_new += (int(mex[3])-48);  
         }
         //pwm_new = (int(mex[1])-48)*100 + (int(mex[2])-48)*10 + (int(mex[3])-48);
         set_pwm(pwm_new);
         String stringa = "new pwm setted at "+String(pwm_new)+" ";
         serialWriter(stringa);
-        }
+    }
 
     else  if(chr == 'O'){
       
@@ -172,12 +173,12 @@ void loop() {
           serialWriter(stringa);
           time_0 = time_1 = 0;
         }
-      }
+    }
     else  if(chr == 'I'){
         default_movement();
         time_0 = millis();
         serialWriter("moving");
-        }
+    }
     
     else  if(chr == 'S'){
       
@@ -226,8 +227,8 @@ void loop() {
             stop_movement();
     
             break;
-        }
-  }
+       }
+    }
       
     
 
@@ -269,12 +270,7 @@ void loop() {
             right_mov();
             serialWriter("destra");
             default_movement();
-            break;        
-
-          
-            
-          
-        
+            break;       
 
           default:
           //default block everything
@@ -284,90 +280,77 @@ void loop() {
             serialWriter(mex);
 
             break;
+        } 
+        //printing phase and module for the sonar sscanner
+        //serialWriter(String(sonar_index)+";"+String(scan_point(sonar_index)));
+      //scan_point(sonar_index);
+        
+      }
+      //printing phase and module for the sonar sscanner
+      
+  
+      else if(movementAuthorized == false){
+          int temp = analogRead(controller);
+          serialWriter(String(temp));
+
+          if (temp<2600 && temp>=2500){
+                  stop_movement();
+                  delay(100);
+                  serialWriter("avanti");
+                  forward_mov();
+                  default_movement();
+          }
+          else if (temp<1750 && temp>=1600){
+                  stop_movement();
+                  delay(100);
+                  back_mov();
+                  serialWriter("indietro");
+                  default_movement();
+          }
+          else if (temp<1000 && temp>=800){
+                  stop_movement();
+                  delay(100);
+                  left_mov();
+                  serialWriter("sinistra");
+                  default_movement();
+          }
+          else if (temp<2200 && temp>2000){
+                  stop_movement();
+                  delay(100);
+                  right_mov();
+                  serialWriter("destra");
+                  default_movement();
+          }
+
+          else if(temp<=50){
+              stop_movement();
+              delay(100);
+              serialWriter("Leonardo Fermo");   
           }
           
-          
 
-        
-    /*/
-      else{
-      serialWriter("not moving");
-        stop_movement();
-        if(time_0){
-          
-          time_1 = millis();
-          delta = (time_1-time_0);
-          String stringa = "moved for "+String(delta)+" milliseconds";
-          serialWriter(stringa);
-          time_0 = time_1 = 0;
-        }
-    }*/
+      }
     }
+
     
-    
-  }
-    
-  }
-  //printing phase and module for the sonar sscanner
-  serialWriter(String(sonar_index)+";"+String(scan_point(sonar_index)));
-  //scan_point(sonar_index);
-  if(direction){
-    sonar_index++;
-    if(sonar_index == maxAngle){
-      direction = false;
-    }
-  }
-  else{
-    sonar_index--;
-    if(sonar_index == minAngle){
-      direction = true;
-    }
+ 
   }
   
-  if(movementAuthorized == false){
-      int temp = analogRead(controller);
-      serialWriter(String(temp));
-
-      if (temp<2600 && temp>=2500){
-          stop_movement();
-              delay(100);
-              serialWriter("avanti");
-              forward_mov();
-              default_movement();
+  if(direction){
+      sonar_index++;
+      if(sonar_index == maxAngle){
+          direction = false;
       }
-      else if (temp<1750 && temp>=1600){
-        stop_movement();
-              delay(100);
-              back_mov();
-              serialWriter("indietro");
-              default_movement();
-      }
-      else if (temp<1000 && temp>=800){
-        stop_movement();
-              delay(100);
-              left_mov();
-              serialWriter("sinistra");
-              default_movement();
-      }
-      else if (temp<2200 && temp>2000){
-        stop_movement();
-              delay(100);
-              right_mov();
-              serialWriter("destra");
-              default_movement();
-      }
-
-      else if(temp<=50){
-          stop_movement();
-          delay(100);
-          serialWriter("Leonardo Fermo");   
-      }
-      
-
     }
-  }
-
-
+    else{
+      sonar_index--;
+      if(sonar_index == minAngle){
+        direction = true;
+      }
+    }
+    
+    serialWriter("D:"+String(sonar_index)+";"+String(scan_point(sonar_index)));
+}
 
 /*
 void toBeTested(){
