@@ -1,10 +1,11 @@
 import serial
 import time
+import serial_write_module as u_writer
 
 # Configure the serial port
 ser = serial.Serial(
-    port='COM3',           # Serial port name
-    baudrate=9600,         # Baud rate
+    port='COM104',           # Serial port name
+    baudrate=115200,         # Baud rate
     timeout=1              # Read timeout in seconds
 )
 
@@ -13,9 +14,19 @@ try:
         # Read data from serial port
         if ser.in_waiting > 0:
             line = ser.readline().decode('utf-8').strip()
-            print(f"Received: {line}")
+            #print(f"Received: {line}")
+            if line[0] == 'D':
+                  str = line[:line.len()-2]
+                  distance = str.split(";")
+                  if distance[1]<50:
+                      u_writer.SerialWriter.send_string("O")
+                  else:
+                      u_writer.SerialWriter.send_string("F")
+                
+
+            
         
-        time.sleep(0.1)  # Small delay to prevent CPU overuse
+        #time.sleep(0.1)  # Small delay to prevent CPU overuse
 
 except KeyboardInterrupt:
     print("\nStopping serial read...")
@@ -26,3 +37,5 @@ except serial.SerialException as e:
 finally:
     if ser.is_open:
         ser.close()
+
+
