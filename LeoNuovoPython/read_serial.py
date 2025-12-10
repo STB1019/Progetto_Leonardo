@@ -4,9 +4,9 @@ import serial_write_module as u_writer
 
 # Configure the serial port
 ser = serial.Serial(
-    port='COM104',           # Serial port name
+    port='/dev/ttyUSB0',           # Serial port name
     baudrate=115200,         # Baud rate
-    timeout=1              # Read timeout in seconds
+    timeout=0.01              # Read timeout in seconds
 )
 
 try:
@@ -14,14 +14,19 @@ try:
         # Read data from serial port
         if ser.in_waiting > 0:
             line = ser.readline().decode('utf-8').strip()
-            #print(f"Received: {line}")
+            print(f"Received: {line}")
             if line[0] == 'D':
-                  str = line[:line.len()-2]
+ #                 print(f'aaa')
+                  str = line[2:]
                   distance = str.split(";")
-                  if distance[1]<50:
-                      u_writer.SerialWriter.send_string("O")
+                  temp = int(distance[1])
+                  print(distance)
+                  if temp<50:
+                      ser.write(b'O')
+                  elif (temp<100 & temp>=50):
+                      ser.write(b'P100')
                   else:
-                      u_writer.SerialWriter.send_string("F")
+                      ser.write(b'F')
                 
 
             
